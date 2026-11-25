@@ -36,6 +36,7 @@
 - [ ] Безопасность nginx: HTTPS, HSTS, CSP и прочие заголовки, `server_tokens off`.
 - [ ] Политика обработки персональных данных и оферта (ссылки сейчас `#`).
 - [x] SEO: title/description/keywords, canonical, Open Graph-картинка, `sitemap.xml`, `robots.txt`, schema.org (Organization, хлебные крошки, FAQ, Service), 404, лендинг `/integrations/rkeeper`.
+- [x] SEO: расширенные keywords и title по семантическому ядру (`docs/SEO.md`), `Clean-param` в robots.txt, 301 с `/index.html`, IndexNow (`npm run indexnow`).
 - [ ] SEO после запуска: реальный домен, Google Search Console + Яндекс Вебмастер (коды в `src/lib/seo.ts`), отправить sitemap, Яндекс Бизнес / Google Business Profile, внешние ссылки; лендинги для iiko, 1С, Poster, агрегаторов.
 - [ ] Аналитика.
 - [ ] Доступность и `prefers-reduced-motion`; Lighthouse ≥ 90. Главная сейчас ~480 КБ HTML из-за двух вёрсток — при необходимости оптимизировать.

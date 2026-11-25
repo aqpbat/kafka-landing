@@ -23,6 +23,8 @@
 - `scripts/almaty-map.py` — карта центра Алматы в карточке «Доставка» на главной (`public/img/almaty-map.svg`, данные OpenStreetMap, подпись «© OpenStreetMap» рядом с картой обязательна). Как пересобрать и откуда брать данные — в шапке скрипта; маршрут и метки рисуются поверх карты в `Main.dc.html`/`Mobile.dc.html` в той же системе координат 600×480.
 - `node scripts/phones.mjs <dir> [chrome|webkit] [ширина]` — скриншоты 5 экранов телефона в hero; `node scripts/sections.mjs <dir> '<путь>|<ширина>|<селектор>|<имя>' …` — скриншоты отдельных блоков. Оба останавливают таймеры страницы и проверяют её как в Chrome, так и (phones) в WebKit/Safari.
 
+- `npm run indexnow` — после деплоя (когда Plesk обновил сайт) отправить все адреса из `dist/sitemap.xml` в Яндекс и Bing по IndexNow; ключ — `public/<ключ>.txt`. Семантическое ядро (запросы по страницам, кандидаты на новые лендинги) и порядок подключения Вебмастера/Search Console — `docs/SEO.md`.
+
 - Docker: `docker compose up -d --build` — собирает сайт (Node) и раздаёт `dist/` через nginx на порту 8080 (конфиг `docker/nginx.conf`, `absolute_redirect off` нужен из-за проброса порта). После любых правок контейнер нужно пересобрать этой же командой; остановить — `docker compose down`.
 
 - Деплой на ps.kz (Plesk, Apache): `npm run deploy` — собирает сайт в `dist/`, коммитит только `dist/` и делает `git push`. Папка `dist/` лежит в git; Plesk забирает репозиторий, корень документов сайта — `dist/`. Правки исходников коммитьте отдельно до деплоя. Правила `.htaccess` (`public/.htaccess`) повторяют `docker/nginx.conf`: `/products/` → 301 на `/products`, 404 → `/404.html`, кеш для `/_astro/`.

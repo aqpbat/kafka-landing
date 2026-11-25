@@ -11,6 +11,10 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # /index.html, /products/index.html → /, /products (no duplicate URLs).
+  RewriteCond %{THE_REQUEST} \s/+(.*?)/?index\.html[\s?]
+  RewriteRule ^ /%1 [R=301,L,NE]
+
   # One URL per page for search engines: /products/ → /products.
   RewriteCond %{THE_REQUEST} \s/+(.+?)/+[\s?]
   RewriteRule ^ /%1 [R=301,L,NE]
