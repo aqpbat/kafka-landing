@@ -36,7 +36,7 @@
 - `astro.config.mjs` — Vite-плагин: `import C from '…/X.dc.html?dc-logic'` отдаёт класс `Component` артборда как ES-модуль (на сервере для начального состояния и в браузере).
 - `src/lib/dc/css.ts` — CSS страницы = `<helmet><style>` главного артборда; отличающиеся правила других артбордов скоупятся (`.v-mob`, `.v-page`).
 - `src/pages/index.astro` — главная: десктопный артборд (`.v-desk`) от 761 px и `Mobile.dc.html` (`.v-mob`) до 760 px. У мобильного дерева id и якоря с префиксом `m-`.
-- `src/pages/[...page].astro` — внутренние страницы (`/products`, `/integrations`, `/integrations/rkeeper`, `/cases`, `/pricing`, `/partners`). Список страниц, их title/description/keywords, хлебные крошки и JSON-LD — в `src/lib/seo.ts` (`PAGES`); новая страница = артборд + запись в `PAGES` + маршрут в `PAGE_LINKS` (`render.ts`).
+- `src/pages/[...page].astro` — внутренние страницы (`/products`, `/integrations`, `/integrations/rkeeper`, `/pricing`, `/partners`). Список страниц, их title/description/keywords, хлебные крошки и JSON-LD — в `src/lib/seo.ts` (`PAGES`); новая страница = артборд + запись в `PAGES` + маршрут в `PAGE_LINKS` (`render.ts`).
 - `src/lib/seo.ts` — SEO: общие настройки (`SITE`: коды подтверждения Google Search Console и Яндекс Вебмастера, номер Яндекс Метрики), метаданные страниц, разметка schema.org (Organization, WebSite, BreadcrumbList, FAQPage — из `faq` в `renderVals()` артборда при `faqSchema: true`, Service). `sitemap.xml` и `robots.txt` строятся из него же (`src/pages/sitemap.xml.ts`, `robots.txt.ts`), домен — `site` в `astro.config.mjs`.
 - `src/layouts/Base.astro` — `<head>`: мета, canonical, Open Graph, JSON-LD, шрифты. `src/pages/404.astro` — страница 404 (noindex).
 - Формы демо отправляют заявки в сервис `kafka-bot` (он пересылает их в Telegram-чат продаж). Механика — `src/lib/lead.ts` (UTM в `sessionStorage`, `fetch` с таймаутом, разбор ответа) и `DCLogic.sendLead()` в `runtime.ts` (считает `elapsed` с момента показа формы). Логика формы в артбордах (`leadVals`/`submitLead`, поля по `name`, ловушка `website`) одинакова во всех 8 файлах — правьте синхронно; у `Pricing` и `Partners` есть свой `leadExtra()`. Адрес API — переменная `PUBLIC_LEAD_API` (по умолчанию Railway; в Docker — `--build-arg`). Контракт API — `docs/LEADS-INTEGRATION.md`. С `localhost` сервер отвечает 403: проверяйте с перехватом запроса в playwright (`page.route`). Каждая успешная заявка уходит в живой чат — тестовые отправлять только с согласия пользователя и с «ТЕСТ» в имени.
@@ -51,7 +51,8 @@
 | `Mobile.dc.html` | Главная, mobile 390 |
 | `Products.dc.html` | Все модули подробно + конструктор набора модулей |
 | `IntegrationRkeeper.dc.html` | SEO-лендинг «Интеграция r_keeper» (`/integrations/rkeeper`): схема работы, возможности, шаги подключения, FAQ на `<details>` (текст ответов всегда в HTML) |
-| `Integrations.dc.html`, `Cases.dc.html`, `Pricing.dc.html` (тарифы Старт/Рост/Сеть + FAQ), `Partners.dc.html` | Внутренние страницы |
+| `Integrations.dc.html`, `Pricing.dc.html` (тарифы Старт/Рост/Сеть + FAQ), `Partners.dc.html` | Внутренние страницы |
+| `Cases.dc.html` | Кейсы — **временно скрыты**: нет записи в `PAGES`, страница `/cases` не собирается, ссылки на неё, блок «Кейсы» на главной (`Main`, `Mobile`) и «Мини-кейс» в `Products` убраны. Чтобы вернуть — восстановить запись в `seo.ts` и ссылки в навигации |
 | `UIKit.dc.html` | UI-кит: цвета, типографика, логотип, иконки, кнопки — сверяйтесь с ним |
 
 Страницы ссылаются друг на друга по имени файла (`href="Products.dc.html"`). Шапка, меню и блок демо-формы **скопированы** в каждый файл, а не вынесены в компонент — общую правку нужно повторить во всех страницах (и в `Mobile.dc.html`).

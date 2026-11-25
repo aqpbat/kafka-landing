@@ -187,7 +187,6 @@ input,select{font:500 16px 'Montserrat',system-ui,sans-serif}
     <nav aria-label="Основная навигация" class="hide-md" style="display: flex; align-items: center; gap: 26px">
       <a class="navlink" href="Products.dc.html" style="{{megaChevron}}" aria-current="page">Продукты</a>
       <a class="navlink" href="Integrations.dc.html">Интеграции</a>
-      <a class="navlink" href="Cases.dc.html">Кейсы</a>
       <a class="navlink" href="Pricing.dc.html">Тарифы</a>
       <a class="navlink" href="Partners.dc.html">Партнёрам</a>
     </nav>
@@ -544,49 +543,6 @@ input,select{font:500 16px 'Montserrat',system-ui,sans-serif}
   </div>
 </section>
 
-<!-- ============ 8. CASES ============ -->
-<section id="cases" style="background: #EFE9E0">
-  <div class="pad sec" style="max-width: 1320px; margin: 0 auto; padding: 112px 40px; display: flex; flex-direction: column; gap: 40px">
-    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap">
-      <div style="display: flex; flex-direction: column; gap: 18px"><span class="eyebrow">Кейсы</span><h2 class="h2" style="font: 800 52px/1.06 'Montserrat', sans-serif; letter-spacing: -0.03em; text-wrap: balance">Результаты в тенге и минутах</h2></div>
-      <a class="btn btn-s" href="Cases.dc.html">Все кейсы</a>
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 16px">
-      <div class="card hov" style="border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
-        <div class="table" style="height: 180px; display: grid; place-items: center"><span class="plate" style="width: 133px; height: 133px"><span class="food f-plov"></span></span></div>
-        <div style="padding: 24px; display: flex; flex-direction: column; gap: 10px">
-          <span class="disp" style="font-size: 38px; color: #D4401F">+45%</span>
-          <b style="font-size: 17px">выручки за 10 месяцев</b>
-          <span style="font-size: 14px; line-height: 1.5; color: #5E5650">Сеть ресторанов национальной кухни, 6 точек, Алматы. Своё приложение и программа лояльности.</span>
-        </div>
-      </div>
-      <div class="card hov" style="border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
-        <div class="table" style="height: 180px; display: grid; place-items: center"><span class="plate" style="width: 133px; height: 133px"><span class="food f-pizza"></span></span></div>
-        <div style="padding: 24px; display: flex; flex-direction: column; gap: 10px">
-          <span class="disp" style="font-size: 38px; color: #D4401F">×2</span>
-          <b style="font-size: 17px">доставка за 5 месяцев</b>
-          <span style="font-size: 14px; line-height: 1.5; color: #5E5650">Пиццерия, 3 точки, Астана. Агрегаторы в одном окне и модуль доставки.</span>
-        </div>
-      </div>
-      <div class="card hov" style="border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
-        <div class="table" style="height: 180px; display: grid; place-items: center"><span class="plate" style="width: 133px; height: 133px"><span class="food f-capp"></span></span></div>
-        <div style="padding: 24px; display: flex; flex-direction: column; gap: 10px">
-          <span class="disp" style="font-size: 38px; color: #D4401F">−30%</span>
-          <b style="font-size: 17px">времени на закупки</b>
-          <span style="font-size: 14px; line-height: 1.5; color: #5E5650">Сеть кофеен, 12 точек, Алматы и Шымкент. ЭДО и оприходование в 1С.</span>
-        </div>
-      </div>
-      <div class="card hov" style="border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
-        <div class="table" style="height: 180px; display: grid; place-items: center"><span class="plate" style="width: 133px; height: 133px"><span class="food f-lagman"></span></span></div>
-        <div style="padding: 24px; display: flex; flex-direction: column; gap: 10px">
-          <span class="disp" style="font-size: 38px; color: #D4401F">38%</span>
-          <b style="font-size: 17px">заказов через WhatsApp-бота</b>
-          <span style="font-size: 14px; line-height: 1.5; color: #5E5650">Дарк-китчен паназиатской кухни, Алматы. AI-бот принимает заказы и присылает ссылку на оплату.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ 13. HOW TO START ============ -->
 <section id="start" style="padding: 112px 0 0">
@@ -727,15 +683,6 @@ input,select{font:500 16px 'Montserrat',system-ui,sans-serif}
   </div>
 </footer>
 
-<!-- floating widget -->
-<div style="position: fixed; right: 24px; bottom: 24px; z-index: 60; display: flex; align-items: center; gap: 12px">
-  <sc-if value="{{chatHint}}" hint-placeholder-val="{{true}}">
-    <span class="card" style="padding: 14px 18px; border-radius: 18px 18px 4px 18px; font: 600 14px/1.35 'Montserrat', sans-serif; max-width: 230px">Что такое Kafka? Расскажем за минуту</span>
-  </sc-if>
-  <button onClick="{{toggleChatHint}}" aria-label="Открыть чат" style="width: 62px; height: 62px; border-radius: 50%; border: 0; background: #D4401F; display: grid; place-items: center; cursor: pointer; box-shadow: 0 16px 30px -10px rgba(212,64,31,.6)">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path></svg>
-  </button>
-</div>
 
 </div>
 </x-dc>

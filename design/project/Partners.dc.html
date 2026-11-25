@@ -149,7 +149,6 @@ input,select{font:500 16px 'Montserrat',system-ui,sans-serif}
     <nav aria-label="Основная навигация" class="hide-md" style="display: flex; align-items: center; gap: 26px">
       <a class="navlink" href="Products.dc.html" style="{{megaChevron}}" aria-current="page">Продукты</a>
       <a class="navlink" href="Integrations.dc.html">Интеграции</a>
-      <a class="navlink" href="Cases.dc.html">Кейсы</a>
       <a class="navlink" href="Pricing.dc.html">Тарифы</a>
       <a class="navlink" href="Partners.dc.html" aria-current="page" style="color: #C23A1B; font-weight: 700">Партнёрам</a>
     </nav>
@@ -300,15 +299,6 @@ input,select{font:500 16px 'Montserrat',system-ui,sans-serif}
   </div>
 </footer>
 
-<!-- floating widget -->
-<div style="position: fixed; right: 24px; bottom: 24px; z-index: 60; display: flex; align-items: center; gap: 12px">
-  <sc-if value="{{chatHint}}" hint-placeholder-val="{{true}}">
-    <span class="card" style="padding: 14px 18px; border-radius: 18px 18px 4px 18px; font: 600 14px/1.35 'Montserrat', sans-serif; max-width: 230px">Что такое Kafka? Расскажем за минуту</span>
-  </sc-if>
-  <button onClick="{{toggleChatHint}}" aria-label="Открыть чат" style="width: 62px; height: 62px; border-radius: 50%; border: 0; background: #D4401F; display: grid; place-items: center; cursor: pointer; box-shadow: 0 16px 30px -10px rgba(212,64,31,.6)">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path></svg>
-  </button>
-</div>
 
 </div>
 </x-dc>

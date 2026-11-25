@@ -103,14 +103,6 @@ export const PAGES: PageMeta[] = [
     ],
   },
   {
-    path: '/cases',
-    file: 'Cases',
-    title: 'Кейсы Kafka — результаты ресторанов и кафе',
-    description:
-      'Как кафе, рестораны, кофейни и дарк-китчены в Казахстане растят заказы в собственных каналах и снижают расходы на агрегаторы с Kafka.',
-    breadcrumbs: [home, { name: 'Кейсы', path: '/cases' }],
-  },
-  {
     path: '/pricing',
     file: 'Pricing',
     title: 'Тарифы Kafka — стоимость платформы для ресторана',
