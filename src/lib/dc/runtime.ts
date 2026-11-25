@@ -4,11 +4,13 @@
  * server-rendered DOM in sync with `renderVals()` after every `setState`.
  */
 import { fillTemplate, getPath, type Vals } from './render';
+import { captureUtm, sendLead, type LeadFields, type LeadResult } from '../lead';
 
 export class DCLogic {
   props: Record<string, unknown>;
   state: Record<string, any> = {};
   /** @internal */ _update?: () => void;
+  /** @internal `performance.now()` when a form of this artboard was first shown. */ _formShownAt?: number;
 
   constructor(props: Record<string, unknown> = {}) {
     this.props = props;
@@ -22,6 +24,11 @@ export class DCLogic {
   renderVals(): Vals {
     return {};
   }
+
+  /** Send a lead to kafka-bot. Absent on the design canvas — artboards check for it. */
+  sendLead(fields: LeadFields): Promise<LeadResult> {
+    return sendLead(fields, this._formShownAt ?? 0);
+  }
 }
 
 type ComponentCtor = new (props: object) => DCLogic & {
@@ -29,7 +36,7 @@ type ComponentCtor = new (props: object) => DCLogic & {
   componentWillUnmount?(): void;
 };
 
-const EVENTS = ['click', 'input', 'change'] as const;
+const EVENTS = ['click', 'input', 'change', 'submit'] as const;
 
 export function mount(root: HTMLElement, Component: ComponentCtor) {
   const comp = new Component({});
@@ -72,8 +79,27 @@ export function mount(root: HTMLElement, Component: ComponentCtor) {
       if (typeof fn === 'function') fn(e);
     });
   }
-  // Forms have no backend yet: never navigate away.
+  // Forms are sent by the artboard's onSubmit handler (sendLead): never navigate away.
   root.addEventListener('submit', (e) => e.preventDefault());
+
+  // `elapsed` in a lead counts from the moment its form is first seen (or touched).
+  captureUtm();
+  const markShown = () => {
+    comp._formShownAt ??= performance.now();
+  };
+  const forms = root.querySelectorAll('form');
+  if (forms.length && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((en) => en.isIntersecting)) {
+        markShown();
+        io.disconnect();
+      }
+    });
+    forms.forEach((f) => io.observe(f));
+  }
+  root.addEventListener('focusin', (e) => {
+    if ((e.target as Element).closest?.('form')) markShown();
+  });
 
   comp.componentDidMount?.();
   // For scripts/tests: document.querySelector('[data-dc-root]').__dc

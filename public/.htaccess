@@ -1,0 +1,36 @@
+# Apache config for static hosting (Plesk on ps.kz). Mirrors docker/nginx.conf.
+# Copied as-is into dist/ by `npm run build`.
+
+Options -Indexes -MultiViews
+DirectoryIndex index.html
+# /products must not redirect to /products/ (pages live in /products/index.html).
+DirectorySlash Off
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # One URL per page for search engines: /products/ → /products.
+  RewriteCond %{THE_REQUEST} \s/+(.+?)/+[\s?]
+  RewriteRule ^ /%1 [R=301,L,NE]
+
+  # /products → /products/index.html directly, without a redirect.
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.+?)/?$ /$1/index.html [L]
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/json application/xml text/plain
+</IfModule>
+
+<IfModule mod_headers.c>
+  # HTML always revalidated; hashed build assets cached forever.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <If "%{REQUEST_URI} =~ m#^/_astro/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+</IfModule>

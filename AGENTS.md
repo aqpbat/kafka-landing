@@ -25,6 +25,8 @@
 
 - Docker: `docker compose up -d --build` — собирает сайт (Node) и раздаёт `dist/` через nginx на порту 8080 (конфиг `docker/nginx.conf`, `absolute_redirect off` нужен из-за проброса порта). После любых правок контейнер нужно пересобрать этой же командой; остановить — `docker compose down`.
 
+- Хостинг ps.kz (Plesk, Apache): `npm run build`, затем содержимое `dist/` (вместе со скрытым `.htaccess`) залить в корень сайта `httpdocs/`; архив: `cd dist && zip -qr ../kafka-site.zip .`. Правила `.htaccess` (`public/.htaccess`) повторяют `docker/nginx.conf`: `/products/` → 301 на `/products`, 404 → `/404.html`, кеш для `/_astro/`.
+
 Тестов нет; проверка — сборка, скриншоты на 1440 и 390 px и клики через playwright.
 
 ## Как устроен сайт
@@ -37,7 +39,7 @@
 - `src/pages/[...page].astro` — внутренние страницы (`/products`, `/integrations`, `/integrations/rkeeper`, `/cases`, `/pricing`, `/partners`). Список страниц, их title/description/keywords, хлебные крошки и JSON-LD — в `src/lib/seo.ts` (`PAGES`); новая страница = артборд + запись в `PAGES` + маршрут в `PAGE_LINKS` (`render.ts`).
 - `src/lib/seo.ts` — SEO: общие настройки (`SITE`: коды подтверждения Google Search Console и Яндекс Вебмастера, номер Яндекс Метрики), метаданные страниц, разметка schema.org (Organization, WebSite, BreadcrumbList, FAQPage — из `faq` в `renderVals()` артборда при `faqSchema: true`, Service). `sitemap.xml` и `robots.txt` строятся из него же (`src/pages/sitemap.xml.ts`, `robots.txt.ts`), домен — `site` в `astro.config.mjs`.
 - `src/layouts/Base.astro` — `<head>`: мета, canonical, Open Graph, JSON-LD, шрифты. `src/pages/404.astro` — страница 404 (noindex).
-- Формы пока никуда не отправляются (`submit` гасится в рантайме).
+- Формы демо отправляют заявки в сервис `kafka-bot` (он пересылает их в Telegram-чат продаж). Механика — `src/lib/lead.ts` (UTM в `sessionStorage`, `fetch` с таймаутом, разбор ответа) и `DCLogic.sendLead()` в `runtime.ts` (считает `elapsed` с момента показа формы). Логика формы в артбордах (`leadVals`/`submitLead`, поля по `name`, ловушка `website`) одинакова во всех 8 файлах — правьте синхронно; у `Pricing` и `Partners` есть свой `leadExtra()`. Адрес API — переменная `PUBLIC_LEAD_API` (по умолчанию Railway; в Docker — `--build-arg`). Контракт API — `docs/LEADS-INTEGRATION.md`. С `localhost` сервер отвечает 403: проверяйте с перехватом запроса в playwright (`page.route`). Каждая успешная заявка уходит в живой чат — тестовые отправлять только с согласия пользователя и с «ТЕСТ» в имени.
 
 ## Структура канваса
 
