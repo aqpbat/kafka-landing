@@ -28,20 +28,32 @@ function topLevelRules(css: string): Rule[] {
  */
 export function siteCss(baseSrc: string, extras: { src: string; scope: string }[] = []): string {
   const base = parseArtboard(baseSrc).css;
-  const known = new Map(topLevelRules(base).map((r) => [r.sel, r.body.trim()]));
+  const baseRules = topLevelRules(base);
+  const known = new Map(baseRules.map((r) => [r.sel, r.body.trim()]));
+  // A selector (e.g. one @media query) may occur several times in the base.
+  const same = new Set(baseRules.map((r) => `${r.sel}{${r.body.trim()}}`));
   let css = RUNTIME_CSS + '\n' + base;
+  const scopeSel = (sel: string, scope: string) =>
+    sel
+      .split(',')
+      .map((s) => (s.trim() === 'body' ? s : `${scope} ${s.trim()}`))
+      .join(',');
   for (const { src, scope } of extras) {
     for (const r of topLevelRules(parseArtboard(src).css)) {
       const have = known.get(r.sel);
       if (have === r.body.trim()) continue;
+      if (r.sel.startsWith('@media') && same.has(`${r.sel}{${r.body.trim()}}`)) continue;
       if (have === undefined && (r.sel.startsWith('@keyframes') || r.sel.startsWith('@media'))) {
         css += `\n${r.sel}{${r.body}}`;
+      } else if (r.sel.startsWith('@media')) {
+        // Same query as the base artboard but different rules: keep the extra
+        // artboard's rules, scoped to its tree.
+        const inner = topLevelRules(r.body)
+          .map((x) => `${scopeSel(x.sel, scope)}{${x.body}}`)
+          .join('');
+        css += `\n${r.sel}{${inner}}`;
       } else if (!r.sel.startsWith('@')) {
-        const scoped = r.sel
-          .split(',')
-          .map((s) => (s.trim() === 'body' ? s : `${scope} ${s.trim()}`))
-          .join(',');
-        css += `\n${scoped}{${r.body}}`;
+        css += `\n${scopeSel(r.sel, scope)}{${r.body}}`;
       }
     }
   }
