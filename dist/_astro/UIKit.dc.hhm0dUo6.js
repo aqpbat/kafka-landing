@@ -1,0 +1,1 @@
+import{t as e}from"./runtime.TlwOOFpL.js";var t=class extends e{renderVals(){return{}}};export{t as default};

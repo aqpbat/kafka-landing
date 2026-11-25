@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Модули Kafka — приложение, WhatsApp-бот, агрегаторы, CRM</title><meta name="description" content="Модули Kafka для ресторанов и кафе: мобильное приложение и QR-меню, AI-бот для заказов в WhatsApp и Telegram, агрегаторы в одном окне, доставка, CRM, лояльность, бэк-офис и 1С."><meta name="keywords" content="приложение для ресторана, QR-меню, WhatsApp-бот для заказов, Telegram-бот, CRM для ресторана, программа лояльности, доставка, Казахстан"><meta name="robots" content="index, follow, max-image-preview:large"><link rel="canonical" href="https://kafka.kz/products"><link rel="alternate" hreflang="ru" href="https://kafka.kz/products"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/logo.png"><link rel="sitemap" type="application/xml" href="/sitemap.xml"><meta name="theme-color" content="#F7F4EF"><meta property="og:type" content="website"><meta property="og:site_name" content="Kafka"><meta property="og:locale" content="ru_RU"><meta property="og:title" content="Модули Kafka — приложение, WhatsApp-бот, агрегаторы, CRM"><meta property="og:description" content="Модули Kafka для ресторанов и кафе: мобильное приложение и QR-меню, AI-бот для заказов в WhatsApp и Telegram, агрегаторы в одном окне, доставка, CRM, лояльность, бэк-офис и 1С."><meta property="og:url" content="https://kafka.kz/products"><meta property="og:image" content="https://kafka.kz/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Модули Kafka — приложение, WhatsApp-бот, агрегаторы, CRM"><meta name="twitter:description" content="Модули Kafka для ресторанов и кафе: мобильное приложение и QR-меню, AI-бот для заказов в WhatsApp и Telegram, агрегаторы в одном окне, доставка, CRM, лояльность, бэк-офис и 1С."><meta name="twitter:image" content="https://kafka.kz/og.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://kafka.kz/#organization","name":"Kafka","url":"https://kafka.kz/","logo":"https://kafka.kz/logo.png","description":"Kafka помогает ресторанам и кафе в Казахстане получать больше прямых заказов: своё приложение и QR-меню, AI-ассистент в WhatsApp, доставка, агрегаторы и программа лояльности. Работает с iiko и r_keeper.","areaServed":{"@type":"Country","name":"Казахстан"},"telephone":"+77475557604","email":"info@kafka.kz","address":{"@type":"PostalAddress","streetAddress":"пр. Назарбаева, 119","addressLocality":"Алматы","addressCountry":"KZ"},"contactPoint":{"@type":"ContactPoint","contactType":"sales","telephone":"+77475557604","email":"info@kafka.kz","areaServed":"KZ","availableLanguage":["ru","kk"]}},{"@type":"WebSite","@id":"https://kafka.kz/#website","name":"Kafka","url":"https://kafka.kz/","inLanguage":"ru","publisher":{"@id":"https://kafka.kz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://kafka.kz/"},{"@type":"ListItem","position":2,"name":"Продукты","item":"https://kafka.kz/products"}]}]}</script><style>dc-if,dc-for,dc-t{display:contents}dc-if[hidden]{display:none!important}
+
+body{margin:0;background:#F7F4EF;color:#17130F;font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+.wordmark{font-family:'Fraunces',Georgia,'Times New Roman',serif;font-weight:800;letter-spacing:-0.045em;font-optical-sizing:auto}
+a{color:#C23A1B}a:hover{color:#9E2E14}
+h1,h2,h3,h4,p{margin:0}
+.cap{font-family:'Montserrat',system-ui,sans-serif;text-transform:uppercase;letter-spacing:-0.01em;font-weight:800}
+.disp{font-family:'Montserrat',system-ui,sans-serif;font-weight:800;letter-spacing:-0.02em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font:600 16px/1 'Montserrat',system-ui,sans-serif;text-decoration:none;border:0;cursor:pointer;transition:transform .15s ease,background .15s ease;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn-p{background:#D4401F;color:#fff}.btn-p:hover{background:#B5341A;color:#fff}
+.btn-s{background:transparent;color:#17130F;box-shadow:inset 0 0 0 1.5px #17130F}.btn-s:hover{color:#17130F;background:rgba(23,19,15,.05)}
+.btn-wa{background:#12805C;color:#fff}.btn-wa:hover{background:#0D6A4B;color:#fff}
+.btn-l{background:#F7F4EF;color:#17130F}.btn-l:hover{background:#fff;color:#17130F}
+.card{background:#fff;border-radius:28px;box-shadow:0 1px 0 rgba(23,19,15,.04),0 14px 34px -14px rgba(23,19,15,.16)}
+.hov{transition:transform .2s ease,box-shadow .2s ease}.hov:hover{transform:translateY(-4px);box-shadow:0 2px 0 rgba(23,19,15,.04),0 26px 50px -18px rgba(23,19,15,.26)}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 14px;border-radius:999px;background:#fff;border:1px solid #E4DDD2;font:500 14px/1 'Montserrat',system-ui,sans-serif;color:#17130F}
+.badge{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;font:700 11px/1 'Montserrat',system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.b-new{background:#FFC83D;color:#17130F}.b-ai{background:#17130F;color:#fff}
+.eyebrow{font:600 13px/1 'Montserrat',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#C23A1B}
+.photo{position:relative;overflow:hidden;background-color:#E9C9A6;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.18) 0 10px,rgba(255,255,255,0) 10px 20px)}
+.photo > span{position:absolute;left:10px;bottom:8px;font:600 10px/1 'Montserrat',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:rgba(23,19,15,.72)}
+.glass{background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.7)}
+.navlink{color:#17130F;text-decoration:none;font:500 15px/1 'Montserrat',system-ui,sans-serif;padding:10px 4px;background:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.navlink:hover{color:#C23A1B}
+.tick{display:flex;gap:10px;align-items:flex-start;font-size:16px;line-height:1.45;color:#3B342E}
+.tick:before{content:"";flex:none;width:20px;height:20px;margin-top:1px;border-radius:50%;background:#FCE3DA url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10.5l2.6 2.5L14 7.5' fill='none' stroke='%23C23A1B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat}
+.rail{position:relative;height:2px;background:repeating-linear-gradient(90deg,rgba(247,244,239,.28) 0 6px,transparent 6px 12px)}
+.rail i{position:absolute;top:-4px;width:10px;height:10px;border-radius:50%;background:#FF6B47;box-shadow:0 0 0 4px rgba(255,107,71,.22);animation:flow 2.6s linear infinite}
+.rail.out i{background:#3FD69B;box-shadow:0 0 0 4px rgba(63,214,155,.2)}
+@keyframes flow{0%{left:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:calc(100% - 10px);opacity:0}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(212,64,31,.45)}70%{box-shadow:0 0 0 22px rgba(212,64,31,0)}100%{box-shadow:0 0 0 0 rgba(212,64,31,0)}}
+.fl1{animation:floaty 5s ease-in-out infinite}.fl2{animation:floaty 6s ease-in-out .8s infinite}.fl3{animation:floaty 5.5s ease-in-out 1.6s infinite}.fl4{animation:floaty 6.5s ease-in-out .4s infinite}
+.hub{animation:pulse 2.4s ease-out infinite}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:26px 0;background:none;border:0;text-align:left;cursor:pointer;font:600 20px/1.35 'Montserrat',system-ui,sans-serif;color:#17130F}
+input,select{font:500 16px 'Montserrat',system-ui,sans-serif}
+.field{display:flex;flex-direction:column;gap:8px;font:500 14px/1 'Montserrat',sans-serif;color:#B8AFA6}
+.field input{height:54px;border-radius:14px;border:1px solid rgba(247,244,239,.18);background:rgba(247,244,239,.06);color:#F7F4EF;padding:0 18px}
+.field input::placeholder{color:#8E857C}
+.field input[aria-invalid="true"]{border-color:#FF8A6A}
+.ferr{font:500 13px/1.35 'Montserrat',sans-serif;color:#FF8A6A}
+.hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;opacity:0}
+.btn[aria-busy="true"]{opacity:.65;cursor:progress;pointer-events:none}
+.flowline{stroke-dasharray:5 9;animation:dash 1.4s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-28}}
+.dot-in,.dot-out{position:absolute;left:0;top:0;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;z-index:2;offset-rotate:0deg;animation-name:travel;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+.dot-in{background:#FF6B47;box-shadow:0 0 0 4px rgba(255,107,71,.25),0 0 14px rgba(255,107,71,.8)}
+.dot-out{background:#3FD69B;box-shadow:0 0 0 4px rgba(63,214,155,.22),0 0 14px rgba(63,214,155,.7)}
+@keyframes travel{0%{offset-distance:0%;opacity:0}10%{opacity:1}90%{opacity:1}100%{offset-distance:100%;opacity:0}}
+.ring{position:absolute;border-radius:50%;border:1.5px solid rgba(255,138,106,.5);z-index:2;animation:ringout 2.6s ease-out infinite}
+@keyframes ringout{0%{transform:scale(.7);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+.hw-step{animation:hwstep 6s ease infinite both}
+@keyframes hwstep{0%{opacity:0;transform:translateY(10px)}8%{opacity:1;transform:none}82%{opacity:1;transform:none}92%,100%{opacity:0;transform:translateY(-4px)}}
+.hw-marquee{animation:hwmarq 40s linear infinite}
+@keyframes hwmarq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (max-width:1180px){.show-md{display:flex!important}}
+.lv-slide{animation:lvfade .5s ease both}
+@keyframes lvfade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.fl-pop{animation:lvpop .55s cubic-bezier(.2,.8,.2,1) both}
+.fl-pop > .card{animation:floaty 5s ease-in-out 1.2s infinite}
+.prog-a,.prog-b{transform-origin:left}.prog-a{animation:lvprogA 8s linear both}.prog-b{animation:lvprogB 8s linear both}
+@keyframes lvprogA{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes lvprogB{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.scr .lv-grow{transform-origin:bottom}.scr .lv-growx{transform-origin:left}
+.scr .lv-draw{stroke-dasharray:420}
+.scr .lv-typing{display:none}
+.scr .lv-switch{background:#D4401F}.scr .lv-switch i{position:absolute;top:3px;left:21px;width:22px;height:22px;border-radius:50%;background:#fff}
+.scr .lv-paid{background:#12805C}
+.lv-paid .a,.lv-paid .b,.lv-status .a,.lv-status .b{position:absolute;inset:0}
+.lv-paid .a,.lv-status .a{opacity:0}
+.lv-status span{display:grid;place-items:center;border-radius:8px;font:700 11px/1 'Montserrat',sans-serif;text-align:center}
+.lv-status .a{background:#FFF1CC;color:#7A5300}.lv-status .b{background:#DDF3E9;color:#0E6B4C}
+.scr .lv-best{transform:scale(1.03)}
+.scr.on .lv-pop{animation:lvpop .5s cubic-bezier(.2,.8,.2,1) both}
+.scr.on .lv-drop{animation:lvdrop .5s cubic-bezier(.2,.8,.2,1) both}
+.scr.on .lv-grow{animation:lvgrow .9s cubic-bezier(.2,.8,.2,1) both}
+.scr.on .lv-growx{animation:lvgrowx 1.1s cubic-bezier(.2,.8,.2,1) both}
+.scr.on .lv-draw{animation:lvdraw 1.8s ease both}
+.scr.on .lv-typing{display:inline-flex;gap:4px;align-items:center;animation:lvtype 1.1s ease both}
+.lv-typing.dark{background:rgba(247,244,239,.1)}
+.lv-typing i{width:7px;height:7px;border-radius:50%;background:#8E857C;animation:lvdot 1s ease-in-out infinite}
+.lv-typing i:nth-child(2){animation-delay:.15s}.lv-typing i:nth-child(3){animation-delay:.3s}
+.scr.on .lv-bump{animation:lvbump .5s cubic-bezier(.3,1.6,.5,1) both}
+.scr.on .lv-press{animation:lvpress .4s ease both}
+.scr.on .lv-switch{animation:lvswbg .3s ease both}.scr.on .lv-switch i{animation:lvswk .3s ease both}
+.scr.on .lv-paid{animation:lvpaid .4s ease both}
+.scr.on .lv-paid .a,.scr.on .lv-status .a{animation:lvout .3s ease both}
+.scr.on .lv-paid .b,.scr.on .lv-status .b{animation:lvin .3s ease both}
+.scr.on .lv-best{animation:lvbest .6s cubic-bezier(.2,.8,.2,1) both}
+.scr.on .lv-fill{animation:lvfill .35s ease both}
+.bar-in{transform-origin:left;animation:lvgrowx 1.2s cubic-bezier(.2,.8,.2,1) 1.2s both}
+.wheel{animation:lvspin 3s cubic-bezier(.2,.8,.2,1) 1.6s both}
+@keyframes lvpop{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes lvdrop{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+@keyframes lvgrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes lvgrowx{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes lvdraw{from{stroke-dashoffset:420}to{stroke-dashoffset:0}}
+@keyframes lvdot{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(-4px);opacity:1}}
+@keyframes lvtype{0%{opacity:0;max-height:0;padding-top:0;padding-bottom:0}10%{opacity:1;max-height:40px;padding-top:12px;padding-bottom:12px}85%{opacity:1;max-height:40px;padding-top:12px;padding-bottom:12px}100%{opacity:0;max-height:0;padding-top:0;padding-bottom:0;margin-top:-10px}}
+@keyframes lvbump{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes lvpress{0%{transform:scale(1)}50%{transform:scale(.94)}100%{transform:scale(1)}}
+@keyframes lvswbg{from{background:#5E5650}to{background:#D4401F}}
+@keyframes lvswk{from{left:3px}to{left:21px}}
+@keyframes lvpaid{from{background:#B5361B}to{background:#34C759}}
+@keyframes lvout{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-8px)}}
+@keyframes lvin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes lvbest{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1.03)}}
+@keyframes lvfill{from{background:#ECE8FF;color:#5A4E9A}to{background:#5B3DF5;color:#fff}}
+@keyframes lvspin{from{transform:rotate(0)}to{transform:rotate(1080deg)}}
+.lp-pop{animation:lpPop 7s ease infinite both}
+@keyframes lpPop{0%{opacity:0;transform:translateY(12px) scale(.97)}6%{opacity:1;transform:none}86%{opacity:1;transform:none}94%,100%{opacity:0;transform:translateY(-4px)}}
+.lp-drop{animation:lpDrop 7s ease infinite both}
+@keyframes lpDrop{0%{opacity:0;transform:translateY(-14px)}6%{opacity:1;transform:none}86%{opacity:1;transform:none}94%,100%{opacity:0}}
+.lp-rise{animation:lpRise 7s cubic-bezier(.2,.8,.2,1) infinite both}
+@keyframes lpRise{0%{opacity:0;transform:translateY(30px)}8%{opacity:1;transform:none}86%{opacity:1;transform:none}94%,100%{opacity:0;transform:translateY(10px)}}
+.lp-bar{transform-origin:left;animation:lpBar 7s cubic-bezier(.2,.8,.2,1) infinite both}
+@keyframes lpBar{0%{transform:scaleX(0)}16%{transform:scaleX(1)}86%{transform:scaleX(1)}96%,100%{transform:scaleX(0)}}
+.lp-draw{stroke-dasharray:460;animation:lpDraw 7s ease infinite both}
+@keyframes lpDraw{0%{stroke-dashoffset:460}24%{stroke-dashoffset:0}86%{stroke-dashoffset:0}100%{stroke-dashoffset:-460}}
+.lp-flip span{position:absolute;inset:0;display:grid;place-items:center;border-radius:8px;font:700 11px/1 'Montserrat',sans-serif;text-align:center}
+.lp-flip .a{background:#FFF1CC;color:#7A5300;animation:lpA 7s ease infinite both}
+.lp-flip .b{background:#DDF3E9;color:#0E6B4C;animation:lpB 7s ease infinite both}
+@keyframes lpA{0%,12%{opacity:1}16%,92%{opacity:0}100%{opacity:1}}
+@keyframes lpB{0%,12%{opacity:0;transform:translateY(6px)}16%,92%{opacity:1;transform:none}100%{opacity:0}}
+.lp-pulse{animation:lpPulse 1.8s ease-in-out infinite}
+@keyframes lpPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}50%{box-shadow:0 0 0 12px rgba(255,255,255,0)}}
+@media (max-width:900px){.bento12{grid-template-columns:1fr!important}.bento12>*{grid-column:auto!important}}
+.vs-card .vs-txt > *{transition:opacity .4s ease}
+.vs-card.on .vs-txt > *{animation:vsIn .7s cubic-bezier(.2,.8,.2,1) both}
+.vs-card.on .vs-txt > *:nth-child(1){animation-delay:.25s}.vs-card.on .vs-txt > *:nth-child(2){animation-delay:.33s}.vs-card.on .vs-txt > *:nth-child(3){animation-delay:.41s}.vs-card.on .vs-txt > *:nth-child(4){animation-delay:.49s}.vs-card.on .vs-txt > *:nth-child(5){animation-delay:.57s}
+@keyframes vsIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.vs-pa,.vs-pb{transform-origin:left}.vs-pa{animation:vsPA 6s linear both}.vs-pb{animation:vsPB 6s linear both}
+@keyframes vsPA{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes vsPB{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.vs-off{display:none}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#3FD69B;box-shadow:0 0 0 0 rgba(63,214,155,.7);animation:liveDot 1.6s ease-out infinite}
+@keyframes liveDot{0%{box-shadow:0 0 0 0 rgba(63,214,155,.7)}70%{box-shadow:0 0 0 8px rgba(63,214,155,0)}100%{box-shadow:0 0 0 0 rgba(63,214,155,0)}}
+.ord-a{animation:ordA .45s cubic-bezier(.2,.8,.2,1)}.ord-b{animation:ordB .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes ordA{0%{transform:translateY(8px);opacity:.3;color:#D4401F}100%{transform:none;opacity:1}}
+@keyframes ordB{0%{transform:translateY(8px);opacity:.3;color:#D4401F}100%{transform:none;opacity:1}}
+.ev-a{animation:evA .5s cubic-bezier(.2,.8,.2,1) both}.ev-b{animation:evB .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes evA{from{transform:translateY(100%);opacity:0}to{transform:none;opacity:1}}
+@keyframes evB{from{transform:translateY(100%);opacity:0}to{transform:none;opacity:1}}
+/* ios-screens */
+.ios{text-align:left;font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Helvetica Neue', Arial, sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-0.01em}
+.table{background-color:#E4D3BC;background-image:repeating-linear-gradient(92deg,rgba(120,80,40,.07) 0 2px,transparent 2px 9px),repeating-linear-gradient(88deg,rgba(255,255,255,.08) 0 1px,transparent 1px 13px)}
+.plate{position:relative;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle,#fff 0 60%,#EEE8DF 61% 66%,#FAF8F4 67%);box-shadow:0 4px 10px rgba(60,35,10,.28),inset 0 -2px 4px rgba(0,0,0,.06)}
+.food{display:block;width:62%;height:62%;border-radius:50%}
+.f-plov{background:radial-gradient(circle at 34% 38%,#6E3A1E 0 7%,transparent 8%),radial-gradient(circle at 64% 32%,#7B4222 0 6%,transparent 7%),radial-gradient(circle at 58% 64%,#68361B 0 8%,transparent 9%),radial-gradient(circle at 30% 66%,#E2701F 0 5%,transparent 6%),radial-gradient(circle at 72% 50%,#E87A25 0 4%,transparent 5%),radial-gradient(circle at 46% 52%,#D9A24A 0 6%,transparent 7%),radial-gradient(circle at 44% 24%,#E98A2E 0 3.5%,transparent 4.5%),repeating-radial-gradient(circle at 50% 50%,#F0C56A 0 1.5px,#E5AE4C 1.5px 3px),#E8B456;box-shadow:inset 0 -3px 6px rgba(120,60,10,.35)}
+.f-pizza{width:80%;height:80%;background:radial-gradient(circle at 30% 34%,#A3271A 0 9%,transparent 10%),radial-gradient(circle at 64% 30%,#A82B1C 0 9%,transparent 10%),radial-gradient(circle at 46% 58%,#9E2516 0 9%,transparent 10%),radial-gradient(circle at 72% 64%,#A3271A 0 8%,transparent 9%),radial-gradient(circle at 28% 70%,#9E2516 0 8%,transparent 9%),radial-gradient(circle at 54% 40%,#F6DB8F 0 14%,transparent 15%),radial-gradient(circle,#F2C964 0 54%,#D6492F 55% 72%,#E0A44E 73% 84%,#C98736 85%);box-shadow:inset 0 0 0 2px rgba(150,90,30,.3)}
+.f-capp{width:72%;height:72%;background:radial-gradient(ellipse 22% 28% at 50% 56%,#F6E7CE 0 70%,transparent 72%),radial-gradient(ellipse 30% 20% at 50% 36%,#F6E7CE 0 70%,transparent 72%),radial-gradient(circle,#B97A45 0 52%,#8E5A2E 62%,#fff 64% 74%,#E9E3DA 76%);}
+.f-lagman{background:radial-gradient(circle at 34% 40%,#C9301E 0 7%,transparent 8%),radial-gradient(circle at 64% 60%,#3E8E3A 0 6%,transparent 7%),radial-gradient(circle at 60% 34%,#7B4222 0 7%,transparent 8%),radial-gradient(circle at 36% 66%,#7B4222 0 6%,transparent 7%),repeating-radial-gradient(circle at 50% 50%,#F3D59A 0 2px,#E2B166 2px 4px),#E9C17A}
+.wa-bg > *{flex-shrink:0}
+.wa-bg{background-color:#EFE7DE;background-image:radial-gradient(rgba(120,100,80,.10) 1.2px,transparent 1.3px),radial-gradient(rgba(120,100,80,.07) 1px,transparent 1.1px);background-size:18px 18px,11px 11px;background-position:0 0,5px 7px}
+.scr .lv-fill2{background:#fff}
+.scr.on .lv-fill2{animation:lvfill2 .35s ease both}
+@keyframes lvfill2{from{background:rgba(255,255,255,.16);transform:scale(.8)}to{background:#fff;transform:none}}
+.scr .lv-paid{background:#34C759}
+/* /ios-screens */
+#top .card{text-align:left}
+@media (max-width:1180px){.hide-md{display:none!important}}
+@media (max-width:760px){.hide-sm{display:none!important}.h1{font-size:40px!important}.h2{font-size:30px!important}.pad{padding-left:20px!important;padding-right:20px!important}.sec{padding-top:72px!important;padding-bottom:72px!important}}
+
+.v-page .scr .lv-paid{background:#12805C}</style><link rel="stylesheet" href="/_astro/Base.D2uKRimj.css"></head><body><div data-dc-root="Products" class="v-page">
+
+
+<div style="min-width: 0; overflow-x: clip">
+
+<!-- ============ 1. HEADER ============ -->
+<header style="position: sticky; top: 0; z-index: 50; background: rgba(247,244,239,0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px)">
+  <div class="pad" style="max-width: 1320px; margin: 0 auto; padding: 0 40px; height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; position: relative">
+    <a href="/" aria-label="Kafka — на главную" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #17130F">
+      <span class="wordmark" style="font-size: 32px; line-height: 1; color: #17130F">kafka<span style="color: #D4401F">.</span></span>
+    </a>
+    <nav aria-label="Основная навигация" class="hide-md" style="display: flex; align-items: center; gap: 26px">
+      <a class="navlink" href="/products" style="color: #C23A1B; font-weight: 700" aria-current="page">Продукты</a>
+      <a class="navlink" href="/integrations">Интеграции</a>
+      <a class="navlink" href="/cases">Кейсы</a>
+      <a class="navlink" href="/pricing">Тарифы</a>
+      <a class="navlink" href="/partners">Партнёрам</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 14px">
+      <div role="group" aria-label="Язык сайта" class="hide-sm" style="display: flex; background: #EDE7DE; border-radius: 999px; padding: 4px; gap: 2px">
+        <dc-for data-for="langs">
+          <button data-on-click="langs.0.pick" aria-pressed="true" data-b-aria-pressed="{{langs.0.pressed}}" style="border: 0; cursor: pointer; min-width: 44px; height: 36px; border-radius: 999px; font: 600 13px/1 Montserrat, sans-serif; background: #17130F; color: #fff" data-b-style="{{langs.0.style}}" data-dcb><dc-t data-t="langs.0.code">RU</dc-t></button>
+        
+          <button data-on-click="langs.1.pick" aria-pressed="false" data-b-aria-pressed="{{langs.1.pressed}}" style="border: 0; cursor: pointer; min-width: 44px; height: 36px; border-radius: 999px; font: 600 13px/1 Montserrat, sans-serif; background: transparent; color: #17130F" data-b-style="{{langs.1.style}}" data-dcb><dc-t data-t="langs.1.code">KZ</dc-t></button>
+        
+          <button data-on-click="langs.2.pick" aria-pressed="false" data-b-aria-pressed="{{langs.2.pressed}}" style="border: 0; cursor: pointer; min-width: 44px; height: 36px; border-radius: 999px; font: 600 13px/1 Montserrat, sans-serif; background: transparent; color: #17130F" data-b-style="{{langs.2.style}}" data-dcb><dc-t data-t="langs.2.code">EN</dc-t></button>
+        </dc-for>
+      </div>
+      <a href="https://wa.me/77475557604?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5%20%D0%BE%20Kafka" target="_blank" rel="noopener" aria-label="Написать в WhatsApp" class="hide-sm" style="width: 44px; height: 44px; border-radius: 50%; background: #12805C; display: grid; place-items: center">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+      </a>
+      <a class="btn" href="#demo" style="min-height: 50px; padding: 0 26px; font-size: 15px; background: #17130F; color: #fff">Получить демонстрацию</a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ============ PAGE HEAD ============ -->
+<section class="pad" style="max-width: 1320px; margin: 0 auto; padding: 64px 40px 56px; display: flex; flex-direction: column; gap: 22px">
+  <nav aria-label="Хлебные крошки" style="display: flex; gap: 8px; align-items: center; font: 500 14px/1 'Montserrat', sans-serif; color: #6A615A"><a href="/" style="color: #6A615A; text-decoration: none">Главная</a><span aria-hidden="true">/</span><span style="color: #17130F">Продукты</span></nav>
+  <h1 class="h1" style="font: 800 72px/1.02 'Montserrat', sans-serif; letter-spacing: -0.035em; max-width: 1000px; text-wrap: balance">Все модули Kafka</h1>
+  <p style="font: 500 20px/1.5 'Montserrat', sans-serif; color: #6A615A; max-width: 680px; text-wrap: pretty">Каналы продаж, агрегаторы, оплаты, доставка, гости, маркетинг, бэк-офис, обучение и AI — подробно о каждом модуле. Берите все или только нужные.</p>
+  <div style="display: flex; gap: 12px; flex-wrap: wrap; padding-top: 6px"><a class="btn" href="#demo" style="background: #17130F; color: #fff">Получить демонстрацию</a><a class="btn btn-s" href="/pricing">Смотреть тарифы</a></div>
+</section>
+
+<!-- ============ 6. DETAIL BLOCKS ============ -->
+<section class="pad" style="max-width: 1320px; margin: 0 auto; padding: 0 40px 40px; display: flex; flex-direction: column; gap: 120px">
+
+  <!-- 6.1 channels -->
+  <div style="display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+    <div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+      <span class="eyebrow">Собственные каналы продаж</span>
+      <h2 class="h2" style="font: 800 40px/1.1 'Montserrat', sans-serif; letter-spacing: -0.03em; text-wrap: balance">Продавайте напрямую — без 30% комиссии</h2>
+      <p style="font-size: 18px; line-height: 1.55; color: #3B342E">Приложение под ваш бренд в App Store и Google Play, веб-приложение, сайт-лендинг, QR-меню в зале и Telegram Mini App. Меню, цены и стоп-листы подтягиваются из iiko или r_keeper.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span class="tick">Мобильное приложение iOS и Android с вашим логотипом и цветами</span>
+        <span class="tick">QR-меню на столах: гость заказывает и платит без официанта</span>
+        <span class="tick">Telegram Mini App, WhatsApp- и Telegram-боты, WhatsApp Business API</span>
+      </div>
+      <a class="btn btn-s" href="#demo" style="align-self: flex-start">Посмотреть на демо</a>
+    </div>
+    <div style="flex: 1 1 520px; min-width: 0; height: 520px; border-radius: 36px; background: #FCE7DF; position: relative; overflow: hidden">
+      <div style="position: absolute; left: 50px; top: 50px; width: 220px; height: 450px; border-radius: 36px; background: #17130F; padding: 9px">
+        <div style="height: 100%; border-radius: 28px; background: #FFFBF6; padding: 22px 14px; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+          <span class="cap" style="font-size: 13px; color: #8A2E12">ТАНДЫР</span>
+          <div class="table" style="height: 140px; border-radius: 16px; display: grid; place-items: center"><span class="plate" style="width: 112px; height: 112px"><span class="food f-plov"></span></span></div>
+          <span style="font: 700 16px/1.2 'Montserrat', sans-serif">Бешбармак по-домашнему</span>
+          <span style="font: 400 12px/1.4 'Montserrat', sans-serif; color: #6A615A">Конина, домашнее тесто, сорпа. 450 г</span>
+          <div style="display: flex; gap: 6px"><span style="font: 600 11px/1 'Montserrat', sans-serif; padding: 8px 10px; border-radius: 999px; background: #17130F; color: #fff">Порция</span><span style="font: 600 11px/1 'Montserrat', sans-serif; padding: 8px 10px; border-radius: 999px; background: #F1ECE4">Казан на 4</span></div>
+          <div style="margin-top: auto; background: #D4401F; color: #fff; border-radius: 14px; padding: 14px; display: flex; justify-content: space-between; font: 700 13px/1 'Montserrat', sans-serif"><span>В корзину</span><span>4 600 ₸</span></div>
+        </div>
+      </div>
+      <div class="card" style="position: absolute; right: 40px; top: 60px; width: 220px; padding: 20px; border-radius: 22px; display: flex; flex-direction: column; gap: 12px; align-items: center">
+        <span style="font: 600 12px/1 'Montserrat', sans-serif; color: #6A615A">QR-меню · стол 12</span>
+        <div aria-hidden="true" style="width: 120px; height: 120px; border-radius: 12px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; padding: 8px; background: #fff; border: 1px solid #E7E1D8">
+          <span style="background: #17130F; border-radius: 2px"></span><span style="background: #17130F; border-radius: 2px"></span><span></span><span style="background: #17130F; border-radius: 2px"></span><span></span><span style="background: #17130F; border-radius: 2px"></span>
+          <span style="background: #17130F; border-radius: 2px"></span><span></span><span style="background: #17130F; border-radius: 2px"></span><span></span><span style="background: #17130F; border-radius: 2px"></span><span style="background: #17130F; border-radius: 2px"></span>
+          <span></span><span style="background: #17130F; border-radius: 2px"></span><span style="background: #D4401F; border-radius: 2px"></span><span style="background: #D4401F; border-radius: 2px"></span><span></span><span style="background: #17130F; border-radius: 2px"></span>
+          <span style="background: #17130F; border-radius: 2px"></span><span></span><span style="background: #D4401F; border-radius: 2px"></span><span style="background: #D4401F; border-radius: 2px"></span><span style="background: #17130F; border-radius: 2px"></span><span></span>
+          <span style="background: #17130F; border-radius: 2px"></span><span style="background: #17130F; border-radius: 2px"></span><span></span><span style="background: #17130F; border-radius: 2px"></span><span></span><span style="background: #17130F; border-radius: 2px"></span>
+          <span style="background: #17130F; border-radius: 2px"></span><span></span><span style="background: #17130F; border-radius: 2px"></span><span style="background: #17130F; border-radius: 2px"></span><span style="background: #17130F; border-radius: 2px"></span><span style="background: #17130F; border-radius: 2px"></span>
+        </div>
+        <span style="font: 500 12px/1.3 'Montserrat', sans-serif; text-align: center">Наведите камеру — меню и оплата</span>
+      </div>
+      <div class="card" style="position: absolute; right: 40px; bottom: 50px; width: 260px; padding: 16px; border-radius: 22px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; align-items: center; gap: 8px"><span style="width: 28px; height: 28px; border-radius: 50%; background: #2A9DF4; display: grid; place-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"></path></svg></span><b style="font-size: 14px">ТАНДЫР · Mini App</b></div>
+        <div style="display: flex; justify-content: space-between; font: 500 13px/1 'Montserrat', sans-serif; padding: 10px 12px; background: #F1ECE4; border-radius: 10px"><span>Самса с говядиной ×3</span><b>2 100 ₸</b></div>
+        <span style="background: #2A9DF4; color: #fff; text-align: center; padding: 11px; border-radius: 10px; font: 700 13px/1 'Montserrat', sans-serif">Оформить заказ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.2 AI bot -->
+  <div style="display: flex; flex-wrap: wrap-reverse; gap: 56px; align-items: center">
+    <div style="flex: 1 1 520px; min-width: 0; border-radius: 36px; background: #E3F4EC; padding: 40px; display: flex; justify-content: center">
+      <div class="card" style="width: 100%; max-width: 420px; border-radius: 26px; overflow: hidden">
+        <div style="background: #0E6B4C; color: #fff; padding: 16px 20px; display: flex; align-items: center; gap: 12px">
+          <span style="width: 38px; height: 38px; border-radius: 50%; background: #fff; color: #0E6B4C; display: grid; place-items: center; font: 800 12px/1 'Montserrat', sans-serif">T</span>
+          <span style="display: flex; flex-direction: column; gap: 3px"><b style="font-size: 15px">ТАНДЫР · доставка</b><span style="font-size: 12px; opacity: .85">AI-бот · отвечает сразу</span></span>
+        </div>
+        <div style="background: #EFE8DD; padding: 20px; display: flex; flex-direction: column; gap: 10px; font: 400 14px/1.45 'Montserrat', sans-serif">
+          <span style="align-self: flex-end; max-width: 78%; background: #D9F5C9; padding: 10px 14px; border-radius: 14px 14px 4px 14px">Здравствуйте! Можно 2 плова и лагман на Абая 150, кв 12?</span>
+          <span style="align-self: flex-start; max-width: 84%; background: #fff; padding: 10px 14px; border-radius: 14px 14px 14px 4px">Сәлеметсіз бе! Оформила:<br>• Плов ферганский ×2 — 5 800 ₸<br>• Лагман — 2 600 ₸<br>Доставка 35–40 мин, бесплатно от 7 000 ₸.</span>
+          <span style="align-self: flex-start; max-width: 84%; background: #fff; padding: 12px 14px; border-radius: 14px; display: flex; flex-direction: column; gap: 10px">
+            <span style="display: flex; justify-content: space-between; gap: 18px"><span>Счёт на оплату</span><b>8 400 ₸</b></span>
+            <span style="background: #D4401F; color: #fff; text-align: center; padding: 10px; border-radius: 10px; font-weight: 700">Оплатить онлайн</span>
+          </span>
+          <span style="align-self: flex-end; max-width: 78%; background: #D9F5C9; padding: 10px 14px; border-radius: 14px 14px 4px 14px">Оплатил, спасибо</span>
+          <span style="align-self: center; font: 600 12px/1 'Montserrat', sans-serif; background: #DDF3E9; color: #0E6B4C; padding: 8px 12px; border-radius: 999px">Оплачено · заказ #5102 передан в iiko</span>
+        </div>
+      </div>
+    </div>
+    <div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+      <div style="display: flex; gap: 10px; align-items: center"><span class="eyebrow">AI-бот для заказов</span><span class="badge b-ai">AI</span></div>
+      <h2 class="h2" style="font: 800 40px/1.1 'Montserrat', sans-serif; letter-spacing: -0.03em; text-wrap: balance">Заказы из WhatsApp без оператора</h2>
+      <p style="font-size: 18px; line-height: 1.55; color: #3B342E">Бот отвечает гостям в WhatsApp и Telegram, собирает заказ по вашему меню, выставляет счёт на оплату и отправляет оплаченный заказ на кухню.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span class="tick">Принимает заказы и отвечает на вопросы гостей</span>
+        <span class="tick">Выставляет счёт — гость платит в пару касаний</span>
+        <span class="tick">Работает на русском и казахском</span>
+      </div>
+      <a class="btn btn-wa" href="https://wa.me/77475557604?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5%20%D0%BE%20Kafka" target="_blank" rel="noopener" style="align-self: flex-start">Попробовать бота в WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- 6.3 aggregators -->
+  <div style="display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+    <div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+      <span class="eyebrow">Агрегаторы в одном окне</span>
+      <h2 class="h2" style="font: 800 40px/1.1 'Montserrat', sans-serif; letter-spacing: -0.03em; text-wrap: balance">Wolt, Glovo, Yandex Eats и Choco — один экран</h2>
+      <p style="font-size: 18px; line-height: 1.55; color: #3B342E">Заказы со всех площадок сразу попадают в POS. Поставили блюдо на стоп в iiko или r_keeper — оно пропадёт во всех агрегаторах автоматически.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span class="tick">Заказы падают в кассу без ручного ввода</span>
+        <span class="tick">Автоматическая синхронизация меню и стоп-листов</span>
+        <span class="tick">Один планшет вместо четырёх</span>
+      </div>
+    </div>
+    <div style="flex: 1 1 520px; min-width: 0">
+      <div class="card" style="border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px">
+          <b style="font-size: 18px">Все заказы · сейчас</b>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap">
+            <span style="font: 600 12px/1 'Montserrat', sans-serif; padding: 7px 10px; border-radius: 999px; background: #17130F; color: #fff">Все 24</span>
+            <span style="font: 600 12px/1 'Montserrat', sans-serif; padding: 7px 10px; border-radius: 999px; background: #F1ECE4">Новые 5</span>
+            <span style="font: 600 12px/1 'Montserrat', sans-serif; padding: 7px 10px; border-radius: 999px; background: #F1ECE4">Готовятся 11</span>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 90px 1fr 90px 110px; gap: 10px; align-items: center; font: 500 14px/1.2 'Montserrat', sans-serif; padding: 14px; border-radius: 14px; background: #F7F4EF"><b>Wolt</b><span>#4821 · Бургер классик ×2</span><b>8 400 ₸</b><span style="text-align: center; padding: 6px; border-radius: 8px; background: #DDF3E9; color: #0E6B4C; font-weight: 700; font-size: 12px">В iiko</span></div>
+        <div style="display: grid; grid-template-columns: 90px 1fr 90px 110px; gap: 10px; align-items: center; font: 500 14px/1.2 'Montserrat', sans-serif; padding: 14px; border-radius: 14px; background: #F7F4EF"><b>Glovo</b><span>#G-7731 · Пицца Маргарита</span><b>4 900 ₸</b><span style="text-align: center; padding: 6px; border-radius: 8px; background: #DDF3E9; color: #0E6B4C; font-weight: 700; font-size: 12px">В iiko</span></div>
+        <div style="display: grid; grid-template-columns: 90px 1fr 90px 110px; gap: 10px; align-items: center; font: 500 14px/1.2 'Montserrat', sans-serif; padding: 14px; border-radius: 14px; background: #F7F4EF"><b>Yandex</b><span>#Y-2209 · Сет «Филадельфия»</span><b>11 200 ₸</b><span style="text-align: center; padding: 6px; border-radius: 8px; background: #FFF1CC; color: #7A5300; font-weight: 700; font-size: 12px">Готовится</span></div>
+        <div style="display: grid; grid-template-columns: 90px 1fr 90px 110px; gap: 10px; align-items: center; font: 500 14px/1.2 'Montserrat', sans-serif; padding: 14px; border-radius: 14px; background: #F7F4EF"><b>Choco</b><span>#C-1150 · Плов, самса ×2</span><b>5 300 ₸</b><span style="text-align: center; padding: 6px; border-radius: 8px; background: #FCE7DF; color: #A93015; font-weight: 700; font-size: 12px">Новый</span></div>
+        <div style="display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: 16px; background: #17130F; color: #F7F4EF">
+          <span style="flex: none; width: 46px; height: 26px; border-radius: 999px; background: #D4401F; position: relative"><span style="position: absolute; right: 3px; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff"></span></span>
+          <span style="font: 500 14px/1.4 'Montserrat', sans-serif"><b>Стоп-лист:</b> «Сет Филадельфия» снят в Wolt, Glovo, Yandex Eats и Choco</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.4 delivery -->
+  <div style="display: flex; flex-wrap: wrap-reverse; gap: 56px; align-items: center">
+    <div style="flex: 1 1 520px; min-width: 0; border-radius: 36px; background: #F1ECE4; padding: 40px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px">
+        <b style="font-size: 18px">Заказ #5102 · Абая 150</b>
+        <span style="font: 500 14px/1 'Montserrat', sans-serif; color: #6A615A">4,2 км от кухни</span>
+      </div>
+      <div class="card" style="border-radius: 18px; padding: 18px 20px; display: grid; grid-template-columns: 1fr 100px 100px; gap: 10px; align-items: center; box-shadow: none; font: 500 15px/1.2 'Montserrat', sans-serif"><span>Курьерская служба 1</span><span style="color: #6A615A">42 мин</span><b>1 600 ₸</b></div>
+      <div style="border-radius: 18px; padding: 18px 20px; display: grid; grid-template-columns: 1fr 100px 100px; gap: 10px; align-items: center; background: #12805C; color: #fff; font: 600 15px/1.2 'Montserrat', sans-serif; box-shadow: 0 18px 30px -16px rgba(18,128,92,.6)">
+        <span style="display: flex; flex-direction: column; gap: 6px">Курьерская служба 2<span style="font: 700 11px/1 'Montserrat', sans-serif; letter-spacing: .08em; text-transform: uppercase; opacity: .9">Выбрана автоматически</span></span><span>26 мин</span><b>1 200 ₸</b>
+      </div>
+      <div class="card" style="border-radius: 18px; padding: 18px 20px; display: grid; grid-template-columns: 1fr 100px 100px; gap: 10px; align-items: center; box-shadow: none; font: 500 15px/1.2 'Montserrat', sans-serif"><span>Курьерская служба 3</span><span style="color: #6A615A">35 мин</span><b>1 450 ₸</b></div>
+      <div class="card" style="border-radius: 18px; padding: 18px 20px; display: grid; grid-template-columns: 1fr 100px 100px; gap: 10px; align-items: center; box-shadow: none; font: 500 15px/1.2 'Montserrat', sans-serif"><span>Свой курьер</span><span style="color: #6A615A">занят</span><b style="color: #6A615A">—</b></div>
+    </div>
+    <div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+      <span class="eyebrow">Модуль доставки</span>
+      <h2 class="h2" style="font: 800 40px/1.1 'Montserrat', sans-serif; letter-spacing: -0.03em; text-wrap: balance">Лучший курьер на каждый заказ</h2>
+      <p style="font-size: 18px; line-height: 1.55; color: #3B342E">Модуль сравнивает доступные курьерские службы по цене и времени и сам выбирает самую быструю и выгодную. Менеджеру не нужно обзванивать службы.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span class="tick">Сравнение служб по каждому заказу</span>
+        <span class="tick">Автоматический выбор по времени и стоимости</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.5 CRM -->
+  <div style="display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+    <div style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+      <span class="eyebrow">CRM и аналитика</span>
+      <h2 class="h2" style="font: 800 40px/1.1 'Montserrat', sans-serif; letter-spacing: -0.03em; text-wrap: balance">Знайте каждого гостя и каждое блюдо</h2>
+      <p style="font-size: 18px; line-height: 1.55; color: #3B342E">Заказы, статусы и история в одном месте. Карточка гостя с контактами, любимыми блюдами, возрастом, частотой и средним чеком. Меню-инжиниринг покажет, что продвигать, а что убрать.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span class="tick">Статусы и история всех заказов</span>
+        <span class="tick">Аналитика меню и меню-инжиниринг</span>
+        <span class="tick">Карточка гостя по всем каналам</span>
+      </div>
+    </div>
+    <div style="flex: 1 1 600px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 14px">
+      <div class="card" style="padding: 22px; border-radius: 24px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; gap: 14px; align-items: center">
+          <span style="width: 56px; height: 56px; border-radius: 50%; background: #E9C9A6; flex: none; display: grid; place-items: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6B4A2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path> <circle cx="12" cy="7" r="4"></circle></svg></span>
+          <span style="display: flex; flex-direction: column; gap: 4px"><b style="font-size: 17px">Ерлан Сапаров</b><span style="font-size: 13px; color: #6A615A">+7 701 ••• 45 12 · 34 года</span></span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+          <div style="background: #F7F4EF; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #6A615A">Средний чек</span><b>6 200 ₸</b></div>
+          <div style="background: #F7F4EF; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #6A615A">Частота</span><b>4 раза/мес</b></div>
+          <div style="background: #F7F4EF; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #6A615A">Заказов</span><b>38</b></div>
+          <div style="background: #F7F4EF; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #6A615A">Уровень</span><b>Gold</b></div>
+        </div>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap"><span class="chip" style="min-height: 30px; font-size: 12px">Бешбармак</span><span class="chip" style="min-height: 30px; font-size: 12px">Айран</span><span class="chip" style="min-height: 30px; font-size: 12px">Доставка</span></div>
+      </div>
+      <div class="card" style="padding: 22px; border-radius: 24px; display: flex; flex-direction: column; gap: 12px">
+        <b style="font-size: 15px">Меню-инжиниринг · ноябрь</b>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; flex: 1">
+          <div style="background: #DDF3E9; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 6px"><b style="font-size: 13px; color: #0E6B4C">Звёзды</b><span style="font-size: 12px; line-height: 1.35">Плов, бургер классик</span></div>
+          <div style="background: #FFF1CC; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 6px"><b style="font-size: 13px; color: #7A5300">Лошадки</b><span style="font-size: 12px; line-height: 1.35">Самса, лагман</span></div>
+          <div style="background: #E9E4FF; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 6px"><b style="font-size: 13px; color: #4227C9">Загадки</b><span style="font-size: 12px; line-height: 1.35">Стейк рибай</span></div>
+          <div style="background: #FCE7DF; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 6px"><b style="font-size: 13px; color: #A93015">Собаки</b><span style="font-size: 12px; line-height: 1.35">Салат с киноа</span></div>
+        </div>
+      </div>
+      <div class="card" style="padding: 22px; border-radius: 24px; display: flex; flex-direction: column; gap: 14px; grid-column: 1 / -1">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px"><b style="font-size: 15px">Заказы по каналам · 7 дней</b><span style="font-size: 13px; color: #6A615A">Все точки</span></div>
+        <div style="display: flex; align-items: flex-end; gap: 14px; height: 120px" aria-hidden="true">
+          <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; gap: 2px"><span style="height: 30%; background: #17130F; border-radius: 4px"></span><span style="height: 25%; background: #12805C; border-radius: 4px"></span><span style="height: 20%; background: #D4401F; border-radius: 4px"></span></div>
+          <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; gap: 2px"><span style="height: 26%; background: #17130F; border-radius: 4px"></span><span style="height: 28%; background: #12805C; border-radius: 4px"></span><span style="height: 24%; background: #D4401F; border-radius: 4px"></span></div>
+          <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; gap: 2px"><span style="height: 22%; background: #17130F; border-radius: 4px"></span><span style="height: 24%; background: #12805C; border-radius: 4px"></span><span style="height: 22%; background: #D4401F; border-radius: 4px"></span></div>
+          <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; gap: 2px"><span style="height: 28%; background: #17130F; border-radius: 4px"></span><span style="height: 30%; background: #12805C; border-radius: 4px"></span><span style="height: 26%; background: #D4401F; border-radius: 4px"></span></div>
+          <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; gap: 2px"><span style="height: 32%; background: #17130F; border-radius: 4px"></span><span style="height: 30%; background: #12805C; border-radius: 4px"></span><span style="height: 32%; background: #D4401F; border-radius: 4px"></span></div>
+          <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; gap: 2px"><span style="height: 34%; background: #17130F; border-radius: 4px"></span><span style="height: 32%; background: #12805C; border-radius: 4px"></span><span style="height: 32%; background: #D4401F; border-radius: 4px"></span></div>
+          <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; gap: 2px"><span style="height: 30%; background: #17130F; border-radius: 4px"></span><span style="height: 34%; background: #12805C; border-radius: 4px"></span><span style="height: 30%; background: #D4401F; border-radius: 4px"></span></div>
+        </div>
+        <div style="display: flex; gap: 18px; flex-wrap: wrap; font: 500 13px/1 'Montserrat', sans-serif; color: #3B342E">
+          <span style="display: flex; gap: 6px; align-items: center"><i style="width: 10px; height: 10px; border-radius: 3px; background: #D4401F"></i>Свои каналы</span>
+          <span style="display: flex; gap: 6px; align-items: center"><i style="width: 10px; height: 10px; border-radius: 3px; background: #12805C"></i>Агрегаторы</span>
+          <span style="display: flex; gap: 6px; align-items: center"><i style="width: 10px; height: 10px; border-radius: 3px; background: #17130F"></i>Зал и QR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.6 marketing -->
+  <div style="display: flex; flex-wrap: wrap-reverse; gap: 56px; align-items: center">
+    <div style="flex: 1 1 600px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 14px">
+      <div class="card" style="padding: 22px; border-radius: 24px; display: flex; flex-direction: column; gap: 14px">
+        <b style="font-size: 15px">Уровни гостей</b>
+        <div style="display: flex; flex-direction: column; gap: 10px; font: 500 14px/1 'Montserrat', sans-serif">
+          <div style="display: flex; justify-content: space-between; padding: 12px 14px; border-radius: 12px; background: #F1ECE4"><span>Bronze</span><b>3% бонусами</b></div>
+          <div style="display: flex; justify-content: space-between; padding: 12px 14px; border-radius: 12px; background: #E4E1DC"><span>Silver</span><b>5% бонусами</b></div>
+          <div style="display: flex; justify-content: space-between; padding: 12px 14px; border-radius: 12px; background: #FFC83D"><span>Gold</span><b>8% бонусами</b></div>
+        </div>
+      </div>
+      <div class="card" style="padding: 22px; border-radius: 24px; display: flex; flex-direction: column; gap: 12px">
+        <b style="font-size: 15px">Рассылка · сегмент «Не заказывали 30 дней»</b>
+        <div style="background: #F7F4EF; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px">
+          <span style="font: 600 12px/1 'Montserrat', sans-serif; color: #6A615A">PUSH · ТАНДЫР</span>
+          <span style="font: 500 14px/1.4 'Montserrat', sans-serif">Айгерим, соскучились! Ваш промокод <b>PLOV20</b> даёт −20% до воскресенья</span>
+        </div>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap"><span class="chip" style="min-height: 30px; font-size: 12px">Push</span><span class="chip" style="min-height: 30px; font-size: 12px">SMS</span><span class="chip" style="min-height: 30px; font-size: 12px">WhatsApp</span></div>
+        <span style="font: 600 13px/1 'Montserrat', sans-serif; color: #0E6B4C">2 418 получателей</span>
+      </div>
+      <div style="grid-column: 1 / -1; border-radius: 24px; padding: 22px; background: #17130F; color: #F7F4EF; display: flex; gap: 22px; align-items: center; flex-wrap: wrap">
+        <div aria-hidden="true" style="width: 120px; height: 120px; border-radius: 50%; flex: none; background: conic-gradient(#D4401F 0 60deg, #FFC83D 60deg 120deg, #12805C 120deg 180deg, #F7F4EF 180deg 240deg, #5B3DF5 240deg 300deg, #FF8A6A 300deg 360deg); border: 6px solid #2A241F"></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; flex: 1 1 200px">
+          <b style="font-size: 18px">Мини-игра «Колесо вкуса»</b>
+          <span style="font-size: 14px; line-height: 1.45; color: #CFC6BC">Гость крутит колесо в приложении и выигрывает бонусы или блюдо в подарок к заказу.</span>
+        </div>
+      </div>
+    </div>
+    <div style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+      <span class="eyebrow">Маркетинг и лояльность</span>
+      <h2 class="h2" style="font: 800 40px/1.1 'Montserrat', sans-serif; letter-spacing: -0.03em; text-wrap: balance">Гости возвращаются чаще</h2>
+      <p style="font-size: 18px; line-height: 1.55; color: #3B342E">Бонусы, промокоды и прогрессивные уровни. Сегментируйте гостей и отправляйте push, SMS и WhatsApp-рассылки тем, кому они нужны. Мини-игры добавляют азарта.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span class="tick">Бонусы, промокоды и уровни</span>
+        <span class="tick">Сегменты и рассылки по трём каналам</span>
+        <span class="tick">Геймификация в приложении</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6.7 FIDELE -->
+<section style="background: #5B3DF5; color: #fff; margin-top: 120px">
+  <div class="pad sec" style="max-width: 1320px; margin: 0 auto; padding: 112px 40px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+    <div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+      <span style="align-self: flex-start; font: 700 13px/1 'Montserrat', sans-serif; letter-spacing: .04em; padding: 10px 14px; border-radius: 999px; background: #C8F169; color: #1E1452">FIDELE</span>
+      <h2 class="disp h2" style="font-size: 52px; line-height: 1.04">Чем чаще приходят — тем больше скидка</h2>
+      <p style="font-size: 19px; line-height: 1.55; color: #ECE8FF">Fidele — отдельный продукт лояльности. Чем чаще гость приходит, тем выше его скидка: каждый визит подряд добавляет процент. Пропустил срок — серия начинается заново. Гостю выгодно возвращаться, а не ждать акций.</p>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap">
+        <span style="padding: 12px 16px; border-radius: 14px; background: rgba(255,255,255,.12); font: 600 15px/1 'Montserrat', sans-serif">Скидка за визиты подряд</span>
+        <span style="padding: 12px 16px; border-radius: 14px; background: rgba(255,255,255,.12); font: 600 15px/1 'Montserrat', sans-serif">Растущая скидка</span>
+        <span style="padding: 12px 16px; border-radius: 14px; background: rgba(255,255,255,.12); font: 600 15px/1 'Montserrat', sans-serif">Геймификация</span>
+      </div>
+      <a class="btn" href="#demo" style="align-self: flex-start; background: #C8F169; color: #1E1452">Узнать о Fidele</a>
+    </div>
+    <div style="flex: 1 1 520px; min-width: 0; display: flex; justify-content: center">
+      <div style="width: 100%; max-width: 480px; border-radius: 32px; background: #fff; color: #1E1452; padding: 32px; display: flex; flex-direction: column; gap: 24px; box-shadow: 0 40px 80px -30px rgba(20,8,90,.6)">
+        <div style="display: flex; justify-content: space-between; align-items: center">
+          <span style="font: 600 14px/1 'Montserrat', sans-serif; color: #5A4E9A">Кофейня «Дәм» · серия визитов</span>
+          <span style="font: 800 14px/1 'Montserrat', sans-serif; color: #5B3DF5">6 визитов</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px">
+          <span style="aspect-ratio: 1; border-radius: 12px; background: #5B3DF5; color: #fff; display: grid; place-items: center; font: 700 13px/1 'Montserrat', sans-serif">1</span>
+          <span style="aspect-ratio: 1; border-radius: 12px; background: #5B3DF5; color: #fff; display: grid; place-items: center; font: 700 13px/1 'Montserrat', sans-serif">2</span>
+          <span style="aspect-ratio: 1; border-radius: 12px; background: #5B3DF5; color: #fff; display: grid; place-items: center; font: 700 13px/1 'Montserrat', sans-serif">3</span>
+          <span style="aspect-ratio: 1; border-radius: 12px; background: #5B3DF5; color: #fff; display: grid; place-items: center; font: 700 13px/1 'Montserrat', sans-serif">4</span>
+          <span style="aspect-ratio: 1; border-radius: 12px; background: #5B3DF5; color: #fff; display: grid; place-items: center; font: 700 13px/1 'Montserrat', sans-serif">5</span>
+          <span style="aspect-ratio: 1; border-radius: 12px; background: #C8F169; color: #1E1452; display: grid; place-items: center; font: 800 13px/1 'Montserrat', sans-serif; box-shadow: 0 0 0 3px #1E1452 inset">6</span>
+          <span style="aspect-ratio: 1; border-radius: 12px; background: #ECE8FF; color: #5A4E9A; display: grid; place-items: center; font: 700 13px/1 'Montserrat', sans-serif">7</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="font: 600 13px/1 'Montserrat', sans-serif; color: #5A4E9A">Ваша скидка растёт</span>
+          <div style="display: flex; align-items: flex-end; gap: 10px; height: 150px">
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; justify-content: flex-end; height: 100%"><b style="font-size: 13px">3%</b><span style="width: 100%; height: 25%; border-radius: 10px; background: #ECE8FF"></span><span style="font-size: 12px; color: #5A4E9A">1 виз.</span></div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; justify-content: flex-end; height: 100%"><b style="font-size: 13px">5%</b><span style="width: 100%; height: 42%; border-radius: 10px; background: #D3CBFF"></span><span style="font-size: 12px; color: #5A4E9A">3 виз.</span></div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; justify-content: flex-end; height: 100%"><b style="font-size: 13px">7%</b><span style="width: 100%; height: 60%; border-radius: 10px; background: #5B3DF5"></span><span style="font-size: 12px; color: #5A4E9A">6 виз.</span></div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; justify-content: flex-end; height: 100%"><b style="font-size: 13px">10%</b><span style="width: 100%; height: 82%; border-radius: 10px; background: #C8F169; box-shadow: 0 0 0 2px #1E1452 inset"></span><span style="font-size: 12px; color: #5A4E9A">10 виз.</span></div>
+          </div>
+        </div>
+        <div style="padding: 14px 16px; border-radius: 16px; background: #1E1452; color: #fff; font: 500 14px/1.4 'Montserrat', sans-serif">Ещё 4 визита — и скидка станет <b style="color: #C8F169">10%</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="max-width: 1320px; margin: 0 auto; padding: 120px 40px 0; display: flex; flex-direction: column; gap: 120px">
+
+  <!-- 6.8 back office -->
+  <div style="display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+    <div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+      <span class="eyebrow">Бэк-офис и 1С</span>
+      <h2 class="h2" style="font: 800 40px/1.1 'Montserrat', sans-serif; letter-spacing: -0.03em; text-wrap: balance">Документы и закупки без бумаги</h2>
+      <p style="font-size: 18px; line-height: 1.55; color: #3B342E">Электронный документооборот с поставщиками, автоматизация закупок, оприходование товаров в 1С и формирование заказов поставщикам — в пару кликов.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span class="tick">Электронный документооборот</span>
+        <span class="tick">Оприходование в 1С без ручного ввода</span>
+        <span class="tick">Заказы поставщикам по остаткам</span>
+      </div>
+    </div>
+    <div style="flex: 1 1 520px; min-width: 0">
+      <div class="card" style="border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px"><b style="font-size: 18px">Входящие документы</b><span style="font: 500 13px/1 'Montserrat', sans-serif; color: #6A615A">Сегодня · 4</span></div>
+        <div style="display: grid; grid-template-columns: 1fr 120px 130px; gap: 10px; align-items: center; padding: 14px; border-radius: 14px; background: #F7F4EF; font: 500 14px/1.3 'Montserrat', sans-serif"><span>Накладная · ТОО «Агро Мясо»</span><b>486 000 ₸</b><span style="text-align: center; padding: 6px; border-radius: 8px; background: #DDF3E9; color: #0E6B4C; font-weight: 700; font-size: 12px">Оприходовано</span></div>
+        <div style="display: grid; grid-template-columns: 1fr 120px 130px; gap: 10px; align-items: center; padding: 14px; border-radius: 14px; background: #F7F4EF; font: 500 14px/1.3 'Montserrat', sans-serif"><span>ЭСФ · ИП «Овощи Алатау»</span><b>128 400 ₸</b><span style="text-align: center; padding: 6px; border-radius: 8px; background: #DDF3E9; color: #0E6B4C; font-weight: 700; font-size: 12px">Оприходовано</span></div>
+        <div style="display: grid; grid-template-columns: 1fr 120px 130px; gap: 10px; align-items: center; padding: 14px; border-radius: 14px; background: #F7F4EF; font: 500 14px/1.3 'Montserrat', sans-serif"><span>Накладная · Молочный двор</span><b>74 900 ₸</b><span style="text-align: center; padding: 6px; border-radius: 8px; background: #FFF1CC; color: #7A5300; font-weight: 700; font-size: 12px">На проверке</span></div>
+        <div style="margin-top: 8px; padding: 18px; border-radius: 16px; background: #FCE7DF; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap">
+          <span style="display: flex; flex-direction: column; gap: 4px"><b style="font-size: 15px">Заказ поставщику сформирован</b><span style="font-size: 13px; color: #4A433D">Рис девзира 50 кг, морковь 40 кг, баранина 30 кг</span></span>
+          <span class="btn btn-p" style="min-height: 44px; padding: 0 18px; font-size: 14px">Отправить</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.9 AI assistant -->
+  <div style="display: flex; flex-wrap: wrap-reverse; gap: 56px; align-items: center">
+    <div style="flex: 1 1 520px; min-width: 0; border-radius: 36px; background: #17130F; padding: 36px; display: flex; flex-direction: column; gap: 14px; color: #F7F4EF">
+      <div style="display: flex; align-items: center; gap: 10px"><span class="badge b-new">New</span><b style="font-size: 15px">AI-ассистент · все точки</b></div>
+      <span style="align-self: flex-end; max-width: 80%; background: #D4401F; color: #fff; padding: 12px 16px; border-radius: 16px 16px 4px 16px; font: 500 15px/1.4 'Montserrat', sans-serif">Какая выручка по точкам вчера?</span>
+      <div style="align-self: flex-start; width: 92%; background: rgba(247,244,239,.08); border: 1px solid rgba(247,244,239,.12); padding: 16px; border-radius: 16px 16px 16px 4px; display: flex; flex-direction: column; gap: 12px">
+        <span style="font: 500 15px/1.4 'Montserrat', sans-serif">Вчера — <b>4 218 500 ₸</b>, на 8% больше, чем в прошлый вторник.</span>
+        <div style="display: flex; flex-direction: column; gap: 8px; font: 500 13px/1 'Montserrat', sans-serif">
+          <div style="display: grid; grid-template-columns: 110px 1fr 90px; gap: 10px; align-items: center"><span>Абая</span><span style="height: 12px; border-radius: 4px; background: #FF8A6A; width: 100%"></span><b style="text-align: right">1 412 000</b></div>
+          <div style="display: grid; grid-template-columns: 110px 1fr 90px; gap: 10px; align-items: center"><span>Достык</span><span style="height: 12px; border-radius: 4px; background: #FF8A6A; width: 78%"></span><b style="text-align: right">1 102 300</b></div>
+          <div style="display: grid; grid-template-columns: 110px 1fr 90px; gap: 10px; align-items: center"><span>Mega</span><span style="height: 12px; border-radius: 4px; background: #FF8A6A; width: 66%"></span><b style="text-align: right">934 200</b></div>
+          <div style="display: grid; grid-template-columns: 110px 1fr 90px; gap: 10px; align-items: center"><span>Сатпаева</span><span style="height: 12px; border-radius: 4px; background: #FF8A6A; width: 54%"></span><b style="text-align: right">770 000</b></div>
+        </div>
+      </div>
+      <span style="align-self: flex-end; max-width: 80%; background: #D4401F; color: #fff; padding: 12px 16px; border-radius: 16px 16px 4px 16px; font: 500 15px/1.4 'Montserrat', sans-serif">Сколько отмен на доставке?</span>
+      <span style="align-self: flex-start; max-width: 88%; background: rgba(247,244,239,.08); border: 1px solid rgba(247,244,239,.12); padding: 12px 16px; border-radius: 16px 16px 16px 4px; font: 500 15px/1.4 'Montserrat', sans-serif">17 отмен из 612 заказов (2,8%). Больше всего — на точке Mega: 9, в основном из-за стоп-листа.</span>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; padding-top: 4px">
+        <span style="padding: 9px 12px; border-radius: 999px; border: 1px solid rgba(247,244,239,.25); font: 500 13px/1 'Montserrat', sans-serif; color: #D9D1C7">Что хуже всего продаётся?</span>
+        <span style="padding: 9px 12px; border-radius: 999px; border: 1px solid rgba(247,244,239,.25); font: 500 13px/1 'Montserrat', sans-serif; color: #D9D1C7">Средний чек за неделю</span>
+      </div>
+    </div>
+    <div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+      <div style="display: flex; gap: 10px; align-items: center"><span class="eyebrow">AI-ассистент руководителя</span><span class="badge b-ai">AI</span></div>
+      <h2 class="h2" style="font: 800 40px/1.1 'Montserrat', sans-serif; letter-spacing: -0.03em; text-wrap: balance">Спросите — и получите ответ по всем точкам</h2>
+      <p style="font-size: 18px; line-height: 1.55; color: #3B342E">Не нужно собирать отчёты. Владелец или управляющий пишет вопрос в чат и сразу видит цифры и графики по каждой точке.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span class="tick">«Какая выручка по точкам вчера?»</span>
+        <span class="tick">«Что хуже всего продаётся?»</span>
+        <span class="tick">«Сколько отмен на доставке?»</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.10 training -->
+  <div style="display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+    <div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+      <span class="eyebrow">Обучение персонала</span>
+      <h2 class="h2" style="font: 800 40px/1.1 'Montserrat', sans-serif; letter-spacing: -0.03em; text-wrap: balance">Новый сотрудник готов к смене быстрее</h2>
+      <p style="font-size: 18px; line-height: 1.55; color: #3B342E">Видеоплатформа с инструкциями и курсами: работа в iiko и r_keeper, стандарты сервиса вашего заведения. Видно, кто что прошёл.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span class="tick">Курсы по iiko, r_keeper и стандартам сервиса</span>
+        <span class="tick">Прогресс каждого сотрудника</span>
+      </div>
+    </div>
+    <div style="flex: 1 1 520px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 14px">
+      <div class="card hov" style="border-radius: 24px; overflow: hidden; display: flex; flex-direction: column">
+        <div class="photo" style="height: 150px; background-color: #CDB49B; display: grid; place-items: center"><span>Видео: касса iiko</span><span style="width: 56px; height: 56px; border-radius: 50%; background: #fff; display: grid; place-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17130F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left: 3px"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span></div>
+        <div style="padding: 18px; display: flex; flex-direction: column; gap: 6px"><b style="font-size: 16px">Работа на кассе iiko</b><span style="font-size: 13px; color: #6A615A">8 уроков · 42 мин</span></div>
+      </div>
+      <div class="card hov" style="border-radius: 24px; overflow: hidden; display: flex; flex-direction: column">
+        <div class="photo" style="height: 150px; background-color: #E0B07F; display: grid; place-items: center"><span>Видео: сервис в зале</span><span style="width: 56px; height: 56px; border-radius: 50%; background: #fff; display: grid; place-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17130F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left: 3px"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span></div>
+        <div style="padding: 18px; display: flex; flex-direction: column; gap: 6px"><b style="font-size: 16px">Стандарты сервиса</b><span style="font-size: 13px; color: #6A615A">12 уроков · 1 ч 10 мин</span></div>
+      </div>
+      <div class="card" style="grid-column: 1 / -1; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+        <b style="font-size: 15px">Прогресс команды · точка Абая</b>
+        <div style="display: grid; grid-template-columns: 130px 1fr 48px; gap: 12px; align-items: center; font: 500 14px/1 'Montserrat', sans-serif"><span>Асель, кассир</span><span style="height: 8px; border-radius: 4px; background: #F1ECE4"><span style="display: block; width: 100%; height: 100%; border-radius: 4px; background: #12805C"></span></span><b>100%</b></div>
+        <div style="display: grid; grid-template-columns: 130px 1fr 48px; gap: 12px; align-items: center; font: 500 14px/1 'Montserrat', sans-serif"><span>Данияр, официант</span><span style="height: 8px; border-radius: 4px; background: #F1ECE4"><span style="display: block; width: 72%; height: 100%; border-radius: 4px; background: #D4401F"></span></span><b>72%</b></div>
+        <div style="display: grid; grid-template-columns: 130px 1fr 48px; gap: 12px; align-items: center; font: 500 14px/1 'Montserrat', sans-serif"><span>Мария, бариста</span><span style="height: 8px; border-radius: 4px; background: #F1ECE4"><span style="display: block; width: 35%; height: 100%; border-radius: 4px; background: #D4401F"></span></span><b>35%</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. FOR WHOM ============ -->
+<section class="pad sec" style="max-width: 1320px; margin: 0 auto; padding: 120px 40px 112px; display: flex; flex-direction: column; gap: 40px">
+  <div style="display: flex; flex-direction: column; gap: 18px; max-width: 820px">
+    <span class="eyebrow">Для кого</span>
+    <h2 class="h2" style="font: 800 52px/1.06 'Montserrat', sans-serif; letter-spacing: -0.03em; text-wrap: balance">Под ваш формат — свой набор модулей</h2>
+  </div>
+  <div role="tablist" aria-label="Форматы заведений" style="display: flex; gap: 8px; flex-wrap: wrap">
+    <dc-for data-for="audiences">
+      <button role="tab" aria-selected="true" data-b-aria-selected="{{audiences.0.selected}}" data-on-click="audiences.0.pick" style="min-height: 48px; padding: 0 22px; border-radius: 999px; cursor: pointer; font: 600 15px/1 Montserrat, sans-serif; background: #D4401F; color: #fff; border: 1px solid #D4401F" data-b-style="{{audiences.0.style}}" data-dcb><dc-t data-t="audiences.0.name">Кафе</dc-t></button>
+    
+      <button role="tab" aria-selected="false" data-b-aria-selected="{{audiences.1.selected}}" data-on-click="audiences.1.pick" style="min-height: 48px; padding: 0 22px; border-radius: 999px; cursor: pointer; font: 600 15px/1 Montserrat, sans-serif; background: #fff; color: #17130F; border: 1px solid #DCD4C8" data-b-style="{{audiences.1.style}}" data-dcb><dc-t data-t="audiences.1.name">Рестораны</dc-t></button>
+    
+      <button role="tab" aria-selected="false" data-b-aria-selected="{{audiences.2.selected}}" data-on-click="audiences.2.pick" style="min-height: 48px; padding: 0 22px; border-radius: 999px; cursor: pointer; font: 600 15px/1 Montserrat, sans-serif; background: #fff; color: #17130F; border: 1px solid #DCD4C8" data-b-style="{{audiences.2.style}}" data-dcb><dc-t data-t="audiences.2.name">Сети и франшизы</dc-t></button>
+    
+      <button role="tab" aria-selected="false" data-b-aria-selected="{{audiences.3.selected}}" data-on-click="audiences.3.pick" style="min-height: 48px; padding: 0 22px; border-radius: 999px; cursor: pointer; font: 600 15px/1 Montserrat, sans-serif; background: #fff; color: #17130F; border: 1px solid #DCD4C8" data-b-style="{{audiences.3.style}}" data-dcb><dc-t data-t="audiences.3.name">Дарк-китчены</dc-t></button>
+    
+      <button role="tab" aria-selected="false" data-b-aria-selected="{{audiences.4.selected}}" data-on-click="audiences.4.pick" style="min-height: 48px; padding: 0 22px; border-radius: 999px; cursor: pointer; font: 600 15px/1 Montserrat, sans-serif; background: #fff; color: #17130F; border: 1px solid #DCD4C8" data-b-style="{{audiences.4.style}}" data-dcb><dc-t data-t="audiences.4.name">Кофейни</dc-t></button>
+    
+      <button role="tab" aria-selected="false" data-b-aria-selected="{{audiences.5.selected}}" data-on-click="audiences.5.pick" style="min-height: 48px; padding: 0 22px; border-radius: 999px; cursor: pointer; font: 600 15px/1 Montserrat, sans-serif; background: #fff; color: #17130F; border: 1px solid #DCD4C8" data-b-style="{{audiences.5.style}}" data-dcb><dc-t data-t="audiences.5.name">Фастфуд</dc-t></button>
+    </dc-for>
+  </div>
+  <div class="card" style="border-radius: 32px; padding: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 36px">
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <span style="font: 600 13px/1 'Montserrat', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #6A615A">Боль</span>
+      <p style="font: 600 22px/1.4 'Montserrat', sans-serif"><dc-t data-t="aud.pain">Заказы по телефону и в WhatsApp теряются, а агрегаторы забирают до трети чека.</dc-t></p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <span style="font: 600 13px/1 'Montserrat', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #6A615A">Рекомендуем модули</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <dc-for data-for="aud.modules">
+          <span class="chip" style="background: #FCE7DF; border-color: #F5CFC1; font-weight: 600"><dc-t data-t="aud.modules.0">Сайт и QR-меню</dc-t></span>
+        
+          <span class="chip" style="background: #FCE7DF; border-color: #F5CFC1; font-weight: 600"><dc-t data-t="aud.modules.1">AI-бот</dc-t></span>
+        
+          <span class="chip" style="background: #FCE7DF; border-color: #F5CFC1; font-weight: 600"><dc-t data-t="aud.modules.2">Агрегаторы</dc-t></span>
+        
+          <span class="chip" style="background: #FCE7DF; border-color: #F5CFC1; font-weight: 600"><dc-t data-t="aud.modules.3">Лояльность</dc-t></span>
+        </dc-for>
+      </div>
+    </div>
+    <div style="border-radius: 22px; background: #17130F; color: #F7F4EF; padding: 26px; display: flex; flex-direction: column; gap: 10px">
+      <span style="font: 600 13px/1 'Montserrat', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #B8AFA6">Мини-кейс</span>
+      <span class="disp" style="font-size: 40px; color: #FF8A6A"><dc-t data-t="aud.result">+32%</dc-t></span>
+      <span style="font: 500 15px/1.5 'Montserrat', sans-serif; color: #D9D1C7"><dc-t data-t="aud.caseText">заказов в собственных каналах за 4 месяца у кафе на 40 мест в Алматы</dc-t></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 15. FINAL CTA ============ -->
+<section id="demo" style="background: #17130F; color: #F7F4EF">
+  <div class="pad sec" style="max-width: 1320px; margin: 0 auto; padding: 112px 40px; display: flex; flex-wrap: wrap; gap: 56px">
+    <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+      <span class="eyebrow" style="color: #FF8A6A">Демонстрация</span>
+      <h2 class="h2" style="font: 800 48px/1.08 'Montserrat', sans-serif; letter-spacing: -0.03em; text-wrap: balance">Давайте обсудим, как Kafka поможет вашему ресторану</h2>
+      <p style="font-size: 18px; line-height: 1.55; color: #CFC6BC">Расскажите нам о вашем заведении. Мы покажем, как работают наши решения, подберём необходимые инструменты и рассчитаем стоимость подключения.</p>
+      <a id="wa" class="btn btn-wa" href="https://wa.me/77475557604?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5%20%D0%BE%20Kafka" target="_blank" rel="noopener" style="align-self: flex-start">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+        Или напишите в WhatsApp
+      </a>
+    </div>
+    <form data-on-submit="lead.submit" data-on-input="lead.input" style="flex: 1 1 520px; min-width: 0; border-radius: 32px; background: rgba(247,244,239,.05); border: 1px solid rgba(247,244,239,.12); padding: 36px; display: flex; flex-direction: column; gap: 20px">
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <dc-if data-if="lead.open">
+      <dc-if data-if="lead.plan" hidden>
+        <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 16px; background: rgba(247,244,239,.08); border: 1px solid rgba(247,244,239,.16); font: 500 14px/1.45 'Montserrat', sans-serif; color: #F7F4EF">
+          <span style="flex: 1"><dc-t data-t="lead.plan"></dc-t></span>
+          <button type="button" data-on-click="lead.clearPlan" aria-label="Убрать расчёт из заявки" style="flex: none; width: 36px; height: 36px; border: 0; border-radius: 50%; background: rgba(247,244,239,.1); color: #F7F4EF; cursor: pointer; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+        </div>
+      </dc-if>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 16px">
+        <label class="field">Имя<input type="text" name="name" autocomplete="name" maxlength="100" aria-invalid="false" data-b-aria-invalid="{{lead.nameBad}}" placeholder="Айгерим" data-dcb><dc-if data-if="lead.nameErr" hidden><span class="ferr"><dc-t data-t="lead.nameErr"></dc-t></span></dc-if></label>
+        <label class="field">Название заведения<input type="text" name="venue" autocomplete="organization" maxlength="150" placeholder="Кафе «Тандыр»"></label>
+      </div>
+      <label class="field">Телефон<input type="tel" name="phone" autocomplete="tel" inputmode="tel" aria-invalid="false" data-b-aria-invalid="{{lead.phoneBad}}" placeholder="+7 (7__) ___-__-__" data-dcb><dc-if data-if="lead.phoneErr" hidden><span class="ferr"><dc-t data-t="lead.phoneErr"></dc-t></span></dc-if></label>
+      <fieldset style="border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px">
+        <legend style="font: 500 14px/1 'Montserrat', sans-serif; color: #B8AFA6; margin-bottom: 10px; padding: 0">Количество точек</legend>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
+          <dc-for data-for="pointOpts">
+            <button type="button" data-on-click="pointOpts.0.pick" aria-pressed="false" data-b-aria-pressed="{{pointOpts.0.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: transparent; color: #F7F4EF; border: 1px solid rgba(247,244,239,.25)" data-b-style="{{pointOpts.0.style}}" data-dcb><dc-t data-t="pointOpts.0.label">1</dc-t></button>
+          
+            <button type="button" data-on-click="pointOpts.1.pick" aria-pressed="true" data-b-aria-pressed="{{pointOpts.1.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: #D4401F; color: #fff; border: 1px solid #D4401F" data-b-style="{{pointOpts.1.style}}" data-dcb><dc-t data-t="pointOpts.1.label">2–3</dc-t></button>
+          
+            <button type="button" data-on-click="pointOpts.2.pick" aria-pressed="false" data-b-aria-pressed="{{pointOpts.2.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: transparent; color: #F7F4EF; border: 1px solid rgba(247,244,239,.25)" data-b-style="{{pointOpts.2.style}}" data-dcb><dc-t data-t="pointOpts.2.label">4–10</dc-t></button>
+          
+            <button type="button" data-on-click="pointOpts.3.pick" aria-pressed="false" data-b-aria-pressed="{{pointOpts.3.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: transparent; color: #F7F4EF; border: 1px solid rgba(247,244,239,.25)" data-b-style="{{pointOpts.3.style}}" data-dcb><dc-t data-t="pointOpts.3.label">10+</dc-t></button>
+          </dc-for>
+        </div>
+      </fieldset>
+      <fieldset style="border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px">
+        <legend style="font: 500 14px/1 'Montserrat', sans-serif; color: #B8AFA6; margin-bottom: 10px; padding: 0">Какие модули интересны</legend>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
+          <dc-for data-for="interestChips">
+            <button type="button" data-on-click="interestChips.0.toggle" aria-pressed="false" data-b-aria-pressed="{{interestChips.0.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: transparent; color: #F7F4EF; border: 1px solid rgba(247,244,239,.25)" data-b-style="{{interestChips.0.style}}" data-dcb><dc-t data-t="interestChips.0.label">Приложение</dc-t></button>
+          
+            <button type="button" data-on-click="interestChips.1.toggle" aria-pressed="false" data-b-aria-pressed="{{interestChips.1.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: transparent; color: #F7F4EF; border: 1px solid rgba(247,244,239,.25)" data-b-style="{{interestChips.1.style}}" data-dcb><dc-t data-t="interestChips.1.label">QR-меню</dc-t></button>
+          
+            <button type="button" data-on-click="interestChips.2.toggle" aria-pressed="true" data-b-aria-pressed="{{interestChips.2.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: #D4401F; color: #fff; border: 1px solid #D4401F" data-b-style="{{interestChips.2.style}}" data-dcb><dc-t data-t="interestChips.2.label">AI-бот</dc-t></button>
+          
+            <button type="button" data-on-click="interestChips.3.toggle" aria-pressed="true" data-b-aria-pressed="{{interestChips.3.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: #D4401F; color: #fff; border: 1px solid #D4401F" data-b-style="{{interestChips.3.style}}" data-dcb><dc-t data-t="interestChips.3.label">Агрегаторы</dc-t></button>
+          
+            <button type="button" data-on-click="interestChips.4.toggle" aria-pressed="false" data-b-aria-pressed="{{interestChips.4.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: transparent; color: #F7F4EF; border: 1px solid rgba(247,244,239,.25)" data-b-style="{{interestChips.4.style}}" data-dcb><dc-t data-t="interestChips.4.label">Доставка</dc-t></button>
+          
+            <button type="button" data-on-click="interestChips.5.toggle" aria-pressed="false" data-b-aria-pressed="{{interestChips.5.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: transparent; color: #F7F4EF; border: 1px solid rgba(247,244,239,.25)" data-b-style="{{interestChips.5.style}}" data-dcb><dc-t data-t="interestChips.5.label">CRM</dc-t></button>
+          
+            <button type="button" data-on-click="interestChips.6.toggle" aria-pressed="false" data-b-aria-pressed="{{interestChips.6.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: transparent; color: #F7F4EF; border: 1px solid rgba(247,244,239,.25)" data-b-style="{{interestChips.6.style}}" data-dcb><dc-t data-t="interestChips.6.label">Лояльность</dc-t></button>
+          
+            <button type="button" data-on-click="interestChips.7.toggle" aria-pressed="false" data-b-aria-pressed="{{interestChips.7.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: transparent; color: #F7F4EF; border: 1px solid rgba(247,244,239,.25)" data-b-style="{{interestChips.7.style}}" data-dcb><dc-t data-t="interestChips.7.label">Fidele</dc-t></button>
+          
+            <button type="button" data-on-click="interestChips.8.toggle" aria-pressed="false" data-b-aria-pressed="{{interestChips.8.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: transparent; color: #F7F4EF; border: 1px solid rgba(247,244,239,.25)" data-b-style="{{interestChips.8.style}}" data-dcb><dc-t data-t="interestChips.8.label">Бэк-офис и 1С</dc-t></button>
+          
+            <button type="button" data-on-click="interestChips.9.toggle" aria-pressed="false" data-b-aria-pressed="{{interestChips.9.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: transparent; color: #F7F4EF; border: 1px solid rgba(247,244,239,.25)" data-b-style="{{interestChips.9.style}}" data-dcb><dc-t data-t="interestChips.9.label">AI-ассистент</dc-t></button>
+          
+            <button type="button" data-on-click="interestChips.10.toggle" aria-pressed="false" data-b-aria-pressed="{{interestChips.10.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px/1 Montserrat, sans-serif; background: transparent; color: #F7F4EF; border: 1px solid rgba(247,244,239,.25)" data-b-style="{{interestChips.10.style}}" data-dcb><dc-t data-t="interestChips.10.label">Обучение</dc-t></button>
+          </dc-for>
+        </div>
+      </fieldset>
+            <dc-if data-if="lead.fail" hidden>
+        <div role="alert" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 16px; background: rgba(212,64,31,.14); border: 1px solid rgba(255,138,106,.4); font: 500 14px/1.45 'Montserrat', sans-serif; color: #F7F4EF">
+          <span style="flex: 1 1 220px"><dc-t data-t="lead.failText">Не удалось отправить заявку. Напишите нам в WhatsApp — ответим там.</dc-t></span>
+          <a class="btn btn-wa" href="https://wa.me/77475557604?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5%20%D0%BE%20Kafka" target="_blank" rel="noopener" style="min-height: 44px; padding: 0 18px; font-size: 14px">WhatsApp</a>
+        </div>
+      </dc-if>
+      <button type="submit" class="btn btn-p" aria-busy="false" data-b-aria-busy="{{lead.busy}}" style="min-height: 60px; font-size: 17px; margin-top: 6px" data-dcb><dc-t data-t="lead.btn">Получить демонстрацию</dc-t></button>
+      <span style="font: 400 13px/1.5 'Montserrat', sans-serif; color: #8E857C">Нажимая кнопку, вы соглашаетесь с <a href="#" style="color: #CFC6BC">политикой обработки персональных данных</a></span>
+      </dc-if>
+      <dc-if data-if="lead.sent" hidden>
+        <div role="status" style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px">
+          <span style="width: 56px; height: 56px; border-radius: 50%; background: #12805C; color: #fff; display: grid; place-items: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>
+          <h3 style="font: 800 30px/1.15 'Montserrat', sans-serif; letter-spacing: -0.02em">Заявка отправлена</h3>
+          <p style="font: 500 17px/1.55 'Montserrat', sans-serif; color: #CFC6BC">Спасибо! Менеджер свяжется с вами в ближайшее время, чтобы договориться о демонстрации.</p>
+        </div>
+      </dc-if>
+    </form>
+  </div>
+</section>
+
+<!-- ============ 16. FOOTER ============ -->
+<footer style="background: #0F0C09; color: #CFC6BC">
+  <div class="pad" style="max-width: 1320px; margin: 0 auto; padding: 72px 40px 40px; display: flex; flex-direction: column; gap: 48px">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 36px">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <span style="display: flex; align-items: center; gap: 10px; color: #F7F4EF"><span class="wordmark" style="font-size: 30px; line-height: 1; color: #F7F4EF">kafka<span style="color: #D4401F">.</span></span></span>
+        <span style="font-size: 14px; line-height: 1.5">Платформа для кафе, ресторанов, сетей и дарк-китченов в Казахстане.</span>
+      </div>
+      <nav aria-label="Продукты" style="display: flex; flex-direction: column; gap: 12px; font-size: 14px">
+        <b style="color: #F7F4EF; font-size: 15px">Продукты</b>
+        <a href="/products" style="color: #CFC6BC; text-decoration: none">Каналы продаж</a>
+        <a href="/products" style="color: #CFC6BC; text-decoration: none">AI-бот для заказов</a>
+        <a href="/products" style="color: #CFC6BC; text-decoration: none">Агрегаторы</a>
+        <a href="/products" style="color: #CFC6BC; text-decoration: none">Доставка</a>
+        <a href="/products" style="color: #CFC6BC; text-decoration: none">CRM и аналитика</a>
+      </nav>
+      <nav aria-label="Ещё продукты" style="display: flex; flex-direction: column; gap: 12px; font-size: 14px">
+        <b style="color: #F7F4EF; font-size: 15px">&#160;</b>
+        <a href="/products" style="color: #CFC6BC; text-decoration: none">Маркетинг и лояльность</a>
+        <a href="/products" style="color: #CFC6BC; text-decoration: none">Fidele</a>
+        <a href="/products" style="color: #CFC6BC; text-decoration: none">Бэк-офис и 1С</a>
+        <a href="/products" style="color: #CFC6BC; text-decoration: none">AI-ассистент</a>
+        <a href="/products" style="color: #CFC6BC; text-decoration: none">Обучение персонала</a>
+        <a href="/integrations/rkeeper" style="color: #CFC6BC; text-decoration: none">Интеграция с r_keeper</a>
+      </nav>
+      <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px">
+        <b style="color: #F7F4EF; font-size: 15px">Контакты</b>
+        <span>Назарбаева 119, г. Алматы, Республика Казахстан</span>
+        <a href="tel:+77475557604" style="color: #F7F4EF; text-decoration: none; font-weight: 600">+7 747 555 76 04</a><a href="mailto:info@kafka.kz" style="color: #F7F4EF; text-decoration: none; font-weight: 600">info@kafka.kz</a>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
+          <a href="https://wa.me/77475557604?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5%20%D0%BE%20Kafka" target="_blank" rel="noopener" style="color: #F7F4EF; text-decoration: none; padding: 10px 14px; border-radius: 999px; border: 1px solid #3A322B; display: inline-flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid #2A241F; font-size: 13px">
+      <span>© 2026 Kafka</span>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap">
+        <a href="#" style="color: #CFC6BC">Политика конфиденциальности</a>
+        <a href="#" style="color: #CFC6BC">Публичная оферта</a>
+        <span style="display: flex; gap: 10px"><b style="color: #F7F4EF">RU</b><span>KZ</span><span>EN</span></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- floating widget -->
+<div style="position: fixed; right: 24px; bottom: 24px; z-index: 60; display: flex; align-items: center; gap: 12px">
+  <dc-if data-if="chatHint">
+    <span class="card" style="padding: 14px 18px; border-radius: 18px 18px 4px 18px; font: 600 14px/1.35 'Montserrat', sans-serif; max-width: 230px">Что такое Kafka? Расскажем за минуту</span>
+  </dc-if>
+  <button data-on-click="toggleChatHint" aria-label="Открыть чат" style="width: 62px; height: 62px; border-radius: 50%; border: 0; background: #D4401F; display: grid; place-items: center; cursor: pointer; box-shadow: 0 16px 30px -10px rgba(212,64,31,.6)">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path></svg>
+  </button>
+</div>
+
+</div>
+</div></body></html><script type="module" src="/_astro/_...page_.astro_astro_type_script_index_0_lang.BgGfQxmU.js"></script>

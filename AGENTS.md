@@ -25,7 +25,7 @@
 
 - Docker: `docker compose up -d --build` — собирает сайт (Node) и раздаёт `dist/` через nginx на порту 8080 (конфиг `docker/nginx.conf`, `absolute_redirect off` нужен из-за проброса порта). После любых правок контейнер нужно пересобрать этой же командой; остановить — `docker compose down`.
 
-- Хостинг ps.kz (Plesk, Apache): `npm run build`, затем содержимое `dist/` (вместе со скрытым `.htaccess`) залить в корень сайта `httpdocs/`; архив: `cd dist && zip -qr ../kafka-site.zip .`. Правила `.htaccess` (`public/.htaccess`) повторяют `docker/nginx.conf`: `/products/` → 301 на `/products`, 404 → `/404.html`, кеш для `/_astro/`.
+- Деплой на ps.kz (Plesk, Apache): `npm run deploy` — собирает сайт в `dist/`, коммитит только `dist/` и делает `git push`. Папка `dist/` лежит в git; Plesk забирает репозиторий, корень документов сайта — `dist/`. Правки исходников коммитьте отдельно до деплоя. Правила `.htaccess` (`public/.htaccess`) повторяют `docker/nginx.conf`: `/products/` → 301 на `/products`, 404 → `/404.html`, кеш для `/_astro/`.
 
 Тестов нет; проверка — сборка, скриншоты на 1440 и 390 px и клики через playwright.
 
