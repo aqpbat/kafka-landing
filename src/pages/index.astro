@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import Artboard from '../components/Artboard.astro';
+import { siteCss } from '../lib/dc/css';
+import { HOME, pageSchema } from '../lib/seo';
+import mainSrc from '../../design/project/Main.dc.html?raw';
+import mobileSrc from '../../design/project/Mobile.dc.html?raw';
+import Main from '../../design/project/Main.dc.html?dc-logic';
+import Mobile from '../../design/project/Mobile.dc.html?dc-logic';
+
+const css =
+  siteCss(mainSrc, [{ src: mobileSrc, scope: '.v-mob' }]) +
+  // Desktop artboard down to 761px, the dedicated mobile artboard below.
+  `.v-mob{display:none}@media (max-width:760px){.v-desk{display:none}.v-mob{display:block}}` +
+  // The mobile artboard is drawn at a fixed 390px; let it fill the phone.
+  `.v-mob > div:first-child{width:100%!important}`;
+// FAQ block on the home page → FAQPage structured data (same questions as rendered).
+const faq = new Main({}).renderVals().faq as { q: string; a: string }[];
+---
+
+<Base title={HOME.title} description={HOME.description} keywords={HOME.keywords} path="/" schema={pageSchema(Astro.site!, HOME, faq)} css={css}>
+  <Artboard name="desk" class="v-desk" src={mainSrc} Component={Main} />
+  <Artboard name="mob" class="v-mob" src={mobileSrc} Component={Mobile} idPrefix="m-" />
+</Base>
+
+<script>
+  import { mount } from '../lib/dc/runtime';
+  import Main from '../../design/project/Main.dc.html?dc-logic';
+  import Mobile from '../../design/project/Mobile.dc.html?dc-logic';
+
+  const desk = document.querySelector<HTMLElement>('[data-dc-root="desk"]')!;
+  const mob = document.querySelector<HTMLElement>('[data-dc-root="mob"]')!;
+  mount(desk, Main);
+  mount(mob, Mobile);
+
+  // /#demo opened on a phone → jump to the mobile tree's copy of the anchor.
+  const phone = matchMedia('(max-width:760px)');
+  if (phone.matches && location.hash && !location.hash.startsWith('#m-')) {
+    document.getElementById('m-' + location.hash.slice(1))?.scrollIntoView();
+  }
+</script>

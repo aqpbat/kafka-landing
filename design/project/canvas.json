@@ -1,0 +1,106 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 7600,
+      "is_interactive": true,
+      "title": "Главная · Desktop",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "Mobile.dc.html": {
+      "h": 5800,
+      "is_interactive": true,
+      "title": "Главная · Mobile",
+      "w": 390,
+      "x": 1520,
+      "y": 0
+    },
+    "UIKit.dc.html": {
+      "h": 1980,
+      "title": "UI-кит",
+      "w": 1200,
+      "x": 1990,
+      "y": 0
+    },
+    "Products.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Продукты · Desktop",
+      "w": 1440,
+      "x": 3270,
+      "y": 0
+    },
+    "Integrations.dc.html": {
+      "expand": "fill",
+      "h": 3200,
+      "is_interactive": true,
+      "title": "Интеграции · Desktop",
+      "w": 1440,
+      "x": 4790,
+      "y": 0
+    },
+    "Cases.dc.html": {
+      "expand": "fill",
+      "h": 3200,
+      "is_interactive": true,
+      "title": "Кейсы · Desktop",
+      "w": 1440,
+      "x": 6310,
+      "y": 0
+    },
+    "Pricing.dc.html": {
+      "expand": "fill",
+      "h": 5000,
+      "is_interactive": true,
+      "title": "Тарифы · Desktop",
+      "w": 1440,
+      "x": 7830,
+      "y": 0
+    },
+    "Partners.dc.html": {
+      "expand": "fill",
+      "h": 2400,
+      "is_interactive": true,
+      "title": "Партнёрам · Desktop",
+      "w": 1440,
+      "x": 9350,
+      "y": 0
+    },
+    "IntegrationRkeeper.dc.html": {
+      "expand": "fill",
+      "h": 4600,
+      "is_interactive": true,
+      "title": "Интеграция r_keeper · Desktop",
+      "w": 1440,
+      "x": 10870,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-11-18T12:10:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {},
+  "order": [
+    "Main.dc.html",
+    "Mobile.dc.html",
+    "UIKit.dc.html",
+    "Products.dc.html",
+    "Integrations.dc.html",
+    "IntegrationRkeeper.dc.html",
+    "Cases.dc.html",
+    "Pricing.dc.html",
+    "Partners.dc.html"
+  ],
+  "pages": [],
+  "title": "Kafka — лендинг"
+}

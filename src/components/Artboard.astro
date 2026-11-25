@@ -1,0 +1,23 @@
+---
+/**
+ * Renders one design artboard (design/project/*.dc.html) as static HTML of its
+ * initial state. Pair it with a client <script> that calls `mount()` on
+ * `[data-dc-root="<name>"]` with the same artboard's `?dc-logic` import.
+ */
+import { parseArtboard, renderBody } from '../lib/dc/render';
+import type { DCLogic } from '../lib/dc/runtime';
+
+interface Props {
+  name: string;
+  src: string;
+  Component: new (props: object) => DCLogic;
+  idPrefix?: string;
+  class?: string;
+}
+
+const { name, src, Component, idPrefix, class: className } = Astro.props;
+const { body } = parseArtboard(src);
+const html = renderBody(body, new Component({}).renderVals(), { idPrefix });
+---
+
+<div data-dc-root={name} class={className} set:html={html} />

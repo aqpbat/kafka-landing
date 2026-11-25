@@ -1,0 +1,8 @@
+services:
+  site:
+    build: .
+    image: kafka-site
+    container_name: kafka-site
+    ports:
+      - "8080:80"
+    restart: unless-stopped
